@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AutoComplete } from "antd";
-import "./styles.sass";
+import "./styles.scss";
 
 const data = [
 	{ value: "morocco" },
@@ -30,9 +30,8 @@ const SearchBar = () => {
 		<>
 			<AutoComplete
 				options={options}
-				style={{
-					width: 200,
-				}}
+				className="autoComplete"
+				
 				onSelect={onSelect}
 				onSearch={onSearch}
 				placeholder="country name"
