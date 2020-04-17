@@ -1,0 +1,15 @@
+body{
+
+    margin: 1rem 1rem;
+}
+
+
+#root{
+
+    display: flex;
+    flex-direction: column;
+    min-height: -moz-fill-available;
+    min-height: -webkit-fill-available;
+    min-height: stretch;
+}
+    

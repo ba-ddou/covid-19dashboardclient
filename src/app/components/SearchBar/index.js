@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AutoComplete } from "antd";
-import "./styles.sass";
+import "./styles.scss";
 
 const data = [
 	{ value: "morocco" },
