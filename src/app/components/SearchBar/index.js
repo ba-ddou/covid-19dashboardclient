@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AutoComplete } from "antd";
+import { AutoComplete, Input } from "antd";
 import "./styles.sass";
 
 const data = [
@@ -35,8 +35,10 @@ const SearchBar = () => {
 				}}
 				onSelect={onSelect}
 				onSearch={onSearch}
-				placeholder="country name"
-			/>
+				// placeholder="country name"
+			>
+				<Input.Search size="medium" placeholder="country name" />
+			</AutoComplete>
 		</>
 	);
 };
