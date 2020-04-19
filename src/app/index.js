@@ -9,7 +9,7 @@ const App = () => {
 	return (
 		<div>
 			<h1>Covid-19 Dashboard</h1>
-			<SearchBar />
+			<SearchBar onSelect={(country) => console.log(country)} />
 		</div>
 	);
 };

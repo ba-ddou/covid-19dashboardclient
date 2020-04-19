@@ -1,29 +1,17 @@
 import React, { useState } from "react";
 import { AutoComplete, Input } from "antd";
 import "./styles.sass";
+import countries from "./countries";
 
-const data = [
-	{ value: "morocco" },
-	{ value: "canada" },
-	{ value: "tunisia" },
-	{ value: "united states" },
-	{ value: "united kingdom" },
-	{ value: "algeria" },
-];
-
-const SearchBar = () => {
+const SearchBar = (props) => {
 	const [options, setOptions] = useState();
 
 	const onSearch = (searchText) => {
 		setOptions(
-			data.filter((element) => {
+			countries.filter((element) => {
 				return element.value.includes(searchText);
 			})
 		);
-	};
-
-	const onSelect = (data) => {
-		console.log("onSelect", data);
 	};
 
 	return (
@@ -33,10 +21,8 @@ const SearchBar = () => {
 				style={{
 					width: 200,
 				}}
-				onSelect={onSelect}
-				onSearch={onSearch}
-				// placeholder="country name"
-			>
+				onSelect={props.onSelect}
+				onSearch={onSearch}>
 				<Input.Search size="medium" placeholder="country name" />
 			</AutoComplete>
 		</>
