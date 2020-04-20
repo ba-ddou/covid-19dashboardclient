@@ -15,12 +15,12 @@ const MarkSeriesComponent= () => {
 console.log("array ==> ",dataArr);
     
     return ( 
-       <XYPlot height={300} width={800} xType="ordinal">
+       <XYPlot height={300} width={800} xType="ordinal" >
            <VerticalGridLines/>
            <HorizontalGridLines/>
            <YAxis/>
            <XAxis/>
-           <MarkSeries data={dataArr} />
+           <MarkSeries data={dataArr} color="#b2bec3"/>
        </XYPlot>
      );
 }

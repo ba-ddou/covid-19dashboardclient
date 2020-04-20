@@ -3,7 +3,12 @@ import "./styles.scss";
 
 const Info = () => {
     return ( 
-        <h1>Info</h1>
+       <>
+         <h2>country name </h2>
+         {/* <ul>
+             <li></li>
+         </ul> */}
+       </>
      );
 }
  

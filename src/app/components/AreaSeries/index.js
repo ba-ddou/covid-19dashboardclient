@@ -20,7 +20,7 @@ console.log("array ==> ",dataArr);
            <HorizontalGridLines/>
            <YAxis/>
            <XAxis/>
-           <AreaSeries data={dataArr} />
+           <AreaSeries data={dataArr}  color="#b2bec3"/>
        </XYPlot>
      );
 }
