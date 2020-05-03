@@ -1,7 +1,7 @@
 import React from "react";
 
-const Map = () => {
+const AreaSeries = () => {
 	return <div class="mainPanel"></div>;
 };
 
-export default Map;
+export default AreaSeries;
