@@ -1,7 +1,7 @@
 import React from "react";
 
 const Info = () => {
-	return <div class="mainPanel"></div>;
+	return <div className="mainPanel"></div>;
 };
 
 export default Info;

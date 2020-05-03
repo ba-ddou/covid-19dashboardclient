@@ -15,7 +15,7 @@ const SearchBar = (props) => {
 	};
 
 	return (
-		<div class="mainPanel">
+		<div className="mainPanel">
 			<AutoComplete
 				options={options}
 				// style={{
