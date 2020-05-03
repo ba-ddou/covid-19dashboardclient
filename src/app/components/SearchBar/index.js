@@ -15,17 +15,17 @@ const SearchBar = (props) => {
 	};
 
 	return (
-		<>
+		<div class="mainPanel">
 			<AutoComplete
 				options={options}
-				style={{
-					width: 200,
-				}}
+				// style={{
+				// 	width: 200,
+				// }}
 				onSelect={props.onSelect}
 				onSearch={onSearch}>
 				<Input.Search size="medium" placeholder="country name" />
 			</AutoComplete>
-		</>
+		</div>
 	);
 };
 
