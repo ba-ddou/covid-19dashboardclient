@@ -1,14 +1,18 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import {
 	ZoomableGroup,
 	ComposableMap,
 	Geographies,
 	Geography,
 } from "react-simple-maps";
+import { scaleLinear } from "d3-scale";
 
 const geoUrl =
 	"https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
+const colorScale = scaleLinear()
+	.domain([1000000, 400000000])
+	.range(["#ffedea", "#ff5233"]);
 const rounded = (num) => {
 	if (num > 1000000000) {
 		return Math.round(num / 100000000) / 10 + "Bn";
@@ -62,7 +66,14 @@ const MapChart = ({ setTooltipContent }) => {
 									}}
 									style={{
 										default: {
-											fill: "#d6d6da",
+											fill: ((_) => {
+												const {
+													POP_EST,
+												} = geo.properties;
+												return POP_EST
+													? colorScale(POP_EST)
+													: "#F5F4F6";
+											})(),
 											outline: "none",
 										},
 										hover: {
