@@ -1,0 +1,26 @@
+@import 'styles/index.sass'
+
+
+#dateSlider
+    display: flex
+    flex-direction: column
+    justify-content: center
+    &-cpanel,&-slider
+        display: flex
+        justify-content: space-between
+        align-content: center
+
+    &-cpanel
+        span
+            font-family: GeomanistBold
+            color: $mateBlack
+            font-size: 1.2rem
+        
+            padding-bottom: 1rem
+
+    &-slider
+        >svg
+            margin-right: 1rem
+        .ant-slider
+            flex: 1
+
