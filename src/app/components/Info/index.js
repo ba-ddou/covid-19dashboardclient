@@ -15,7 +15,7 @@ const Info = () => {
 	return (
 		<div id="infoPanel" className="mainPanel">
 			<span id="infoPanel-title">Morocco</span>
-			<DateSlider />
+			<DateSlider lastDate="25/03/2020" />
 			<div id="infoPanel-stats">
 				<Stat number="1124" name="Infections" />
 				<Stat number="84" name="Deaths" />
