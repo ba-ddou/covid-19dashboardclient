@@ -33,7 +33,7 @@ const App = () => {
 							/>
 							<Info country={country} />
 						</div>
-						<Map />
+						<Map onClick={(country) => setCountry(country)} />
 					</div>
 					<div id="mainContainer-subC2">
 						<AreaSeries />

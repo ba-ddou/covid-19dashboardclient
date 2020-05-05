@@ -16,7 +16,7 @@ import "./styles.sass";
 // 	}
 // `;
 
-const Map = () => {
+const Map = ({ onClick }) => {
 	// const { loading, error, data } = useQuery(QUERY, {
 	// 	variables: { date: "03/01/2020" },
 	// });
@@ -28,7 +28,7 @@ const Map = () => {
 	const [content, setContent] = useState("");
 	return (
 		<div id="mapPanel" className="mainPanel">
-			<MapChart setTooltipContent={setContent} />
+			<MapChart onClick={onClick} setTooltipContent={setContent} />
 			<ReactTooltip html={true}>{content}</ReactTooltip>
 		</div>
 	);

@@ -23,7 +23,7 @@ const rounded = (num) => {
 	}
 };
 
-const MapChart = ({ setTooltipContent }) => {
+const MapChart = ({ setTooltipContent, onClick }) => {
 	return (
 		<>
 			<ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -61,8 +61,8 @@ const MapChart = ({ setTooltipContent }) => {
 										setTooltipContent("");
 									}}
 									onClick={() => {
-										const { NAME } = geo.properties;
-										alert(NAME);
+										const { NAME, ISO_A2 } = geo.properties;
+										onClick({ value: NAME, ISO_A2 });
 									}}
 									style={{
 										default: {
