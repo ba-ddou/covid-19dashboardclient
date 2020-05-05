@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./styles/antd-overrides.less";
 import "./styles/index.sass";
@@ -18,6 +18,9 @@ import { ApolloProvider } from "@apollo/react-hooks";
 
 const App = () => {
 	const client = new ApolloClient();
+
+	let [country, setCountry] = useState({ value: "morocco", ISO_A2: "MA" });
+
 	return (
 		<ApolloProvider client={client}>
 			<>
@@ -25,8 +28,10 @@ const App = () => {
 				<div id="mainContainer">
 					<div id="mainContainer-subC1">
 						<div id="mainContainer-subC1-subC">
-							<SearchBar />
-							<Info />
+							<SearchBar
+								onSelect={(country) => setCountry(country)}
+							/>
+							<Info country={country} />
 						</div>
 						<Map />
 					</div>

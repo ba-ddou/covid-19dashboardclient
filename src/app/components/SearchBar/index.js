@@ -6,6 +6,11 @@ import countries from "./countries";
 const SearchBar = (props) => {
 	const [options, setOptions] = useState();
 
+	const onSelect = (value) => {
+		let target = countries.find((elem) => elem.value == value);
+		props.onSelect(target);
+	};
+
 	const onSearch = (searchText) => {
 		setOptions(
 			countries.filter((element) => {
@@ -18,10 +23,7 @@ const SearchBar = (props) => {
 		<div className="mainPanel">
 			<AutoComplete
 				options={options}
-				// style={{
-				// 	width: 200,
-				// }}
-				onSelect={props.onSelect}
+				onSelect={onSelect}
 				onSearch={onSearch}>
 				<Input.Search size="medium" placeholder="country name" />
 			</AutoComplete>
