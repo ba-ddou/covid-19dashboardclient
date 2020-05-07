@@ -6,21 +6,24 @@ import "./styles.sass";
 // let firstDateMs = new Date("2020", "01", "21").getTime(); // 21/01/2020;
 let firstDateMs = new Date("2020-01-01").getTime(); // 01/01/2020;
 
+// return the number of days between two date ( first & last included )
 function dateToTicks(lastDate) {
-	let lastDateEle = lastDate.split("/").reverse().join("-");
-	let lastDateMs = new Date(lastDateEle).getTime();
+	let lastDateISOString = lastDate.split("/").reverse().join("-");
+	let lastDateMs = new Date(lastDateISOString).getTime();
 
 	let dif = Math.abs(lastDateMs - firstDateMs);
 
 	return 1 + Math.round(dif / 1000 / 60 / 60 / 24);
 }
 
+// interpolate the current slider tick to its corresponding date
 function tickToDate(tick) {
 	let tickMs = parseInt(firstDateMs) + (tick - 1) * 24 * 60 * 60 * 1000;
 	let date = new Date(tickMs);
 	return date.toDateString();
 }
 
+// interpolate the current slider tick to its corresponding date in a format that server understands
 function tickToDateServerFomat(tick) {
 	let tickMs = parseInt(firstDateMs) + (tick - 1) * 24 * 60 * 60 * 1000;
 	let date = new Date(tickMs);
