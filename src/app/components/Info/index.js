@@ -8,7 +8,7 @@ const extractStats = (country, godViewData) => {
 		let res = godViewData.find(
 			(elem) => elem.territory == country.toLowerCase()
 		);
-		console.log(res);
+
 		if (res)
 			return {
 				confirmed: res.confirmed,
@@ -37,7 +37,7 @@ const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 		country.value,
 		godViewData
 	);
-	console.log(country, confirmed);
+
 	return (
 		<div id="infoPanel" className="mainPanel">
 			<span id="infoPanel-title">

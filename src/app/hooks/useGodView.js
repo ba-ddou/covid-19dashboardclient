@@ -18,7 +18,6 @@ const useGodView = (date) => {
 	const { loading, error, data } = useQuery(QUERY, {
 		variables: { date },
 	});
-
 	return { loading, error, godViewData: data };
 };
 

@@ -4,15 +4,11 @@ import { Slider } from "antd";
 import "./styles.sass";
 
 // let firstDateMs = new Date("2020", "01", "21").getTime(); // 21/01/2020;
-let firstDateMs = new Date("2020", "01", "01").getTime(); // 01/01/2020;
+let firstDateMs = new Date("2020-01-01").getTime(); // 01/01/2020;
 
 function dateToTicks(lastDate) {
-	let lastDateEle = lastDate.split("/");
-	let lastDateMs = new Date(
-		lastDateEle[2],
-		lastDateEle[1],
-		lastDateEle[0]
-	).getTime();
+	let lastDateEle = lastDate.split("/").reverse().join("-");
+	let lastDateMs = new Date(lastDateEle).getTime();
 
 	let dif = Math.abs(lastDateMs - firstDateMs);
 
@@ -22,8 +18,15 @@ function dateToTicks(lastDate) {
 function tickToDate(tick) {
 	let tickMs = parseInt(firstDateMs) + (tick - 1) * 24 * 60 * 60 * 1000;
 	let date = new Date(tickMs);
-	// return date.toString().split(" ").splice(0, 4).join(" ");
 	return date.toDateString();
+}
+
+function tickToDateServerFomat(tick) {
+	let tickMs = parseInt(firstDateMs) + (tick - 1) * 24 * 60 * 60 * 1000;
+	let date = new Date(tickMs);
+
+	date = date.toISOString().slice(0, 10);
+	return date.split("-").reverse().join("/");
 }
 
 const DateSlider = ({ lastDate, onDateChange }) => {
@@ -31,7 +34,7 @@ const DateSlider = ({ lastDate, onDateChange }) => {
 	let [tick, setTick] = useState(ticksNum);
 	let updateDate = (tick) => {
 		setTick(tick);
-		onDateChange(tickToDate(tick));
+		onDateChange(tickToDateServerFomat(tick));
 	};
 	return (
 		<div id="dateSlider">
