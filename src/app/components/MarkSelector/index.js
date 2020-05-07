@@ -3,11 +3,34 @@ import SearchBar from "app/components/SearchBar";
 import { Tag } from "antd";
 import "./styles.sass";
 
+const hues = [
+	"magenta",
+	"red",
+	"volcano",
+	"orange",
+	"gold",
+	"lime",
+	"green",
+	"cyan",
+	"blue",
+	"geekblue",
+	"purple",
+];
+
 const MarkSelector = (props) => {
 	let [countries, setCountries] = useState([]);
-	let onClose = (country) =>
-		setCountries(countries.filter((elem) => elem !== country));
-	let onSelect = (country) => setCountries([...countries, country]);
+	let onClose = (color, country) => {
+		hues.push(color);
+		setCountries(countries.filter((elem) => elem.name === country));
+	};
+
+	let onSelect = (country) => {
+		var isSelected = countries.find((elem) => elem.name === country);
+		if (!isSelected) {
+			let color = hues.pop();
+			if (color) setCountries([...countries, { name: country, color }]);
+		}
+	};
 	return (
 		<div id="markSelector">
 			<div id="markSelector-tags">
@@ -16,9 +39,9 @@ const MarkSelector = (props) => {
 						closable
 						key={index}
 						style={{ margin: ".5rem" }}
-						color="#FF5533"
-						onClose={onClose}>
-						{country}
+						color={country.color}
+						onClose={onClose.bind(1, country.color)}>
+						{country.name}
 					</Tag>
 				))}
 			</div>
