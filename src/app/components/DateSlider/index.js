@@ -3,7 +3,8 @@ import { ArrowLeft, ArrowRight, Calendar } from "react-feather";
 import { Slider } from "antd";
 import "./styles.sass";
 
-let firstDateMs = "1582239600000"; // 21/01/2020;
+// let firstDateMs = new Date("2020", "01", "21").getTime(); // 21/01/2020;
+let firstDateMs = new Date("2020", "01", "01").getTime(); // 01/01/2020;
 
 function dateToTicks(lastDate) {
 	let lastDateEle = lastDate.split("/");
@@ -21,12 +22,17 @@ function dateToTicks(lastDate) {
 function tickToDate(tick) {
 	let tickMs = parseInt(firstDateMs) + (tick - 1) * 24 * 60 * 60 * 1000;
 	let date = new Date(tickMs);
-	return date.toString().split(" ").splice(0, 4).join(" ");
+	// return date.toString().split(" ").splice(0, 4).join(" ");
+	return date.toDateString();
 }
 
-const DateSlider = ({ lastDate }) => {
+const DateSlider = ({ lastDate, onDateChange }) => {
 	let ticksNum = dateToTicks(lastDate);
 	let [tick, setTick] = useState(ticksNum);
+	let updateDate = (tick) => {
+		setTick(tick);
+		onDateChange(tickToDate(tick));
+	};
 	return (
 		<div id="dateSlider">
 			<div id="dateSlider-cpanel">
@@ -34,7 +40,7 @@ const DateSlider = ({ lastDate }) => {
 					color={tick > 1 ? "#141414" : "#d6d6da"}
 					size={20}
 					onClick={(_) => {
-						if (tick > 1) setTick(--tick);
+						if (tick > 1) updateDate(--tick);
 					}}
 				/>
 				<span>{tickToDate(tick)}</span>
@@ -42,7 +48,7 @@ const DateSlider = ({ lastDate }) => {
 					color={tick < ticksNum ? "#141414" : "#d6d6da"}
 					size={20}
 					onClick={(_) => {
-						if (tick < ticksNum) setTick(++tick);
+						if (tick < ticksNum) updateDate(++tick);
 					}}
 				/>
 			</div>
@@ -52,7 +58,7 @@ const DateSlider = ({ lastDate }) => {
 					value={tick}
 					min={1}
 					max={ticksNum}
-					onChange={(tick) => setTick(tick)}
+					onChange={(tick) => updateDate(tick)}
 					tipFormatter={(tick) => tickToDate(tick)}
 				/>
 			</div>

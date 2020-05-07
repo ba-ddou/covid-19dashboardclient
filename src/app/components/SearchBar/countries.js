@@ -1,4 +1,5 @@
 module.exports = [
+	{ value: "global", ISO_A2: "global" },
 	{ value: "afghanistan", ISO_A2: "AF" },
 	{ value: "angola", ISO_A2: "AO" },
 	{ value: "albania", ISO_A2: "AL" },

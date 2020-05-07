@@ -13,36 +13,44 @@ import AreaSeries from "./components/AreaSeries";
 import MarkSeries from "./components/MarkSeries";
 import Footer from "./components/Footer";
 
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "@apollo/react-hooks";
+import useGodView from "app/hooks/useGodView";
 
 const App = () => {
-	const client = new ApolloClient();
+	let [country, setCountry] = useState({ value: "global", ISO_A2: "global" });
+	let [date, setDate] = useState("05/01/2020");
 
-	let [country, setCountry] = useState({ value: "morocco", ISO_A2: "MA" });
+	let { loading, error, godViewData } = useGodView(date);
+
+	let selectCountry = (country) => setCountry(country);
+
+	let onDateChange = (date) => setDate(date);
 
 	return (
-		<ApolloProvider client={client}>
-			<>
-				<Header />
-				<div id="mainContainer">
-					<div id="mainContainer-subC1">
-						<div id="mainContainer-subC1-subC">
-							<SearchBar
-								onSelect={(country) => setCountry(country)}
-							/>
-							<Info country={country} />
-						</div>
-						<Map onClick={(country) => setCountry(country)} />
+		<>
+			<Header />
+			<div id="mainContainer">
+				<div id="mainContainer-subC1">
+					<div id="mainContainer-subC1-subC">
+						<SearchBar onSelect={selectCountry} />
+						<Info
+							country={country}
+							godViewData={loading ? false : godViewData.godView}
+							lastDate="05/01/2020"
+							onDateChange={onDateChange}
+						/>
 					</div>
-					<div id="mainContainer-subC2">
-						<AreaSeries />
-						<MarkSeries />
-					</div>
+					<Map
+						onClick={selectCountry}
+						data={loading ? "loading..." : godViewData.godView}
+					/>
 				</div>
-				<Footer />
-			</>
-		</ApolloProvider>
+				<div id="mainContainer-subC2">
+					<AreaSeries />
+					<MarkSeries />
+				</div>
+			</div>
+			<Footer />
+		</>
 	);
 };
 
