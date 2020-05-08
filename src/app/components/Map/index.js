@@ -4,15 +4,16 @@ import ReactTooltip from "react-tooltip";
 import "./styles.sass";
 
 const Map = ({ onClick, godViewData }) => {
-	// const [tooltipContent, setTooltipContent] = useState("");
-	let setTooltipContent = (content) => {};
+	const [tooltipContent, setTooltipContent] = useState("");
+	// let setTooltipContent = (content) => {};
 	return (
 		<div id="mapPanel" className="mainPanel">
-			<MapChart onClick={onClick} setTooltipContent={setTooltipContent} />
-			{/* <ReactTooltip html={true}>{tooltipContent}</ReactTooltip> */}
-			<ReactTooltip html={true}>
-				{JSON.stringify(godViewData)}
-			</ReactTooltip>
+			<MapChart
+				onClick={onClick}
+				setTooltipContent={setTooltipContent}
+				godViewData={godViewData}
+			/>
+			<ReactTooltip html={true}>{tooltipContent}</ReactTooltip>
 		</div>
 	);
 };

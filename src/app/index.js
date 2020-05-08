@@ -41,7 +41,9 @@ const App = () => {
 					</div>
 					<Map
 						onClick={selectCountry}
-						data={loading ? "loading..." : godViewData.godView}
+						godViewData={
+							loading ? "loading..." : godViewData.godView
+						}
 					/>
 				</div>
 				<div id="mainContainer-subC2">

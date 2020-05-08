@@ -23,7 +23,27 @@ const rounded = (num) => {
 	}
 };
 
-const MapChart = ({ setTooltipContent, onClick }) => {
+const extractStats = (country, godViewData) => {
+	if (godViewData) {
+		let res = godViewData.find(
+			(elem) => elem.territory == country.toLowerCase()
+		);
+
+		if (res)
+			return {
+				confirmed: res.confirmed,
+				recovered: res.recovered,
+				dead: res.dead,
+			};
+	}
+	return {
+		confirmed: "unavailable",
+		recovered: "unavailable",
+		dead: "unavailable",
+	};
+};
+
+const MapChart = ({ setTooltipContent, onClick, godViewData }) => {
 	return (
 		<>
 			<ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -34,27 +54,33 @@ const MapChart = ({ setTooltipContent, onClick }) => {
 								<Geography
 									key={geo.rsmKey}
 									geography={geo}
-									onMouseEnter={() => {
+									// hover state event handler
+									onMouseEnter={(_) => {
 										const {
 											NAME,
 											POP_EST,
 										} = geo.properties;
-										let infections = Math.round(
-											0.0001 * POP_EST
-										);
-										let deaths = Math.round(
-											infections * 0.1
-										);
-										let recoveries = Math.round(
-											infections * 0.04
-										);
+										// let infections = Math.round(
+										// 	0.0001 * POP_EST
+										// );
+										// let deaths = Math.round(
+										// 	infections * 0.1
+										// );
+										// let recoveries = Math.round(
+										// 	infections * 0.04
+										// );
+										let {
+											confirmed,
+											recovered,
+											dead,
+										} = extractStats(NAME, godViewData);
 										setTooltipContent(
 											`${NAME} — ${rounded(
 												POP_EST
 											)} <br /> 
-                                                infections : ${infections} <br />
-                                                Deaths : ${deaths} <br />
-                                                recoveries : ${recoveries}`
+                                                infections : ${confirmed} <br />
+                                                Deaths : ${dead} <br />
+                                                recoveries : ${recovered}`
 										);
 									}}
 									onMouseLeave={() => {
