@@ -5,7 +5,9 @@ import * as serviceWorker from "./serviceWorker";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
-const client = new ApolloClient();
+const client = new ApolloClient({
+	uri: "https://covid-19apolloserver.herokuapp.com/",
+});
 
 ReactDOM.render(
 	<React.StrictMode>
