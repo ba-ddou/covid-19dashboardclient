@@ -4,24 +4,24 @@ import { Plus } from "react-feather";
 import { SearchBar } from "app/components/SearchBar";
 import "./styles.sass";
 
-const hues = [
-	"magenta",
-	"red",
-	"volcano",
-	"orange",
-	"gold",
-	"lime",
-	"green",
-	"cyan",
-	"blue",
-	"geekblue",
-	"purple",
-];
+// const hues = [
+// 	"magenta",
+// 	"red",
+// 	"volcano",
+// 	"orange",
+// 	"gold",
+// 	"lime",
+// 	"green",
+// 	"cyan",
+// 	"blue",
+// 	"geekblue",
+// 	"purple",
+// ];
 const MarkSelector = ({ countries, setCountries }) => {
 	let [inputVisible, setInputVisible] = useState(false);
 
 	let handleClose = (removedCountry, color) => {
-		hues.push(color);
+		// hues.push(color);
 		setCountries(countries.filter((tag) => tag !== removedCountry));
 	};
 
@@ -35,10 +35,7 @@ const MarkSelector = ({ countries, setCountries }) => {
 				(elem) => elem.name === newCountry.value
 			);
 			if (!isSelected) {
-				setCountries([
-					...countries,
-					{ name: newCountry.value, color: hues.pop() },
-				]);
+				setCountries([...countries, newCountry.value]);
 				setInputVisible(false);
 				return 0;
 			}
@@ -48,15 +45,15 @@ const MarkSelector = ({ countries, setCountries }) => {
 
 	return (
 		<div id="markSelector">
-			{countries.map((tag, index) => {
+			{countries.map((country, index) => {
 				return (
 					<Tag
 						closable
 						className="edit-tag"
-						key={tag.name}
-						color={tag.color}
-						onClose={() => handleClose(tag, tag.color)}>
-						{tag.name}
+						key={country}
+						// color={country.color}
+						onClose={() => handleClose(country)}>
+						{country}
 					</Tag>
 				);
 			})}
@@ -69,7 +66,7 @@ const MarkSelector = ({ countries, setCountries }) => {
 			)}
 			{!inputVisible && (
 				<Tag className="site-tag-plus" onClick={showInput}>
-					<Plus size={15} /> New Tag
+					<Plus size={15} /> Add Country
 				</Tag>
 			)}
 		</div>

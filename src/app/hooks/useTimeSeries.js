@@ -7,6 +7,7 @@ const QUERY = gql`
 		timeSeries(territories: $territories) {
 			name
 			stats {
+				territory
 				date
 				confirmed
 				recovered
@@ -17,6 +18,7 @@ const QUERY = gql`
 `;
 
 const useGodView = (territories) => {
+	console.log(territories);
 	const { loading, error, data } = useQuery(QUERY, {
 		variables: { territories },
 	});

@@ -56,32 +56,25 @@ const MapChart = ({ setTooltipContent, onClick, godViewData }) => {
 									geography={geo}
 									// hover state event handler
 									onMouseEnter={(_) => {
-										const {
-											NAME,
-											POP_EST,
-										} = geo.properties;
-										// let infections = Math.round(
-										// 	0.0001 * POP_EST
-										// );
-										// let deaths = Math.round(
-										// 	infections * 0.1
-										// );
-										// let recoveries = Math.round(
-										// 	infections * 0.04
-										// );
-										let {
-											confirmed,
-											recovered,
-											dead,
-										} = extractStats(NAME, godViewData);
-										setTooltipContent(
-											`${NAME} — ${rounded(
-												POP_EST
-											)} <br /> 
+										if (godViewData) {
+											const {
+												NAME,
+												POP_EST,
+											} = geo.properties;
+											let {
+												confirmed,
+												recovered,
+												dead,
+											} = extractStats(NAME, godViewData);
+											setTooltipContent(
+												`${NAME} — ${rounded(
+													POP_EST
+												)} <br /> 
                                                 infections : ${confirmed} <br />
                                                 Deaths : ${dead} <br />
                                                 recoveries : ${recovered}`
-										);
+											);
+										}
 									}}
 									onMouseLeave={() => {
 										setTooltipContent("");
