@@ -6,7 +6,7 @@ import "./styles/index.sass";
 // import config from "./config";
 
 import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
+import { SearchBar } from "./components/SearchBar";
 import Info from "./components/Info";
 import Map from "./components/Map";
 import AreaSeries from "./components/AreaSeries";
@@ -31,7 +31,7 @@ const App = () => {
 			<div id="mainContainer">
 				<div id="mainContainer-subC1">
 					<div id="mainContainer-subC1-subC">
-						<SearchBar onSelect={selectCountry} />
+						<SearchBar onSelect={selectCountry} mainPanel={true} />
 						<Info
 							country={country}
 							godViewData={loading ? false : godViewData.godView}

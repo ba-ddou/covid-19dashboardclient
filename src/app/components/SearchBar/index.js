@@ -3,7 +3,7 @@ import { AutoComplete, Input } from "antd";
 import "./styles.sass";
 import countries from "./countries";
 
-const SearchBar = (props) => {
+export const SearchBar = (props) => {
 	const [options, setOptions] = useState();
 
 	const onSelect = (value) => {
@@ -20,7 +20,7 @@ const SearchBar = (props) => {
 	};
 
 	return (
-		<div className="mainPanel">
+		<div className={props.mainPanel ? "mainPanel searchBar" : "searchBar"}>
 			<AutoComplete
 				options={options}
 				onSelect={onSelect}
@@ -31,4 +31,32 @@ const SearchBar = (props) => {
 	);
 };
 
-export default SearchBar;
+export const TagSearchBar = ({ onSelect, onBlur, mainPanel }) => {
+	const [options, setOptions] = useState();
+
+	const onSelectHandler = (value) => {
+		let target = countries.find((elem) => elem.value == value);
+		onSelect(target);
+	};
+
+	const onSearchHandler = (searchText) => {
+		setOptions(
+			countries.filter((element) => {
+				return element.value.includes(searchText);
+			})
+		);
+	};
+
+	return (
+		<AutoComplete
+			options={options}
+			onSelect={onSelectHandler}
+			onSearch={onSearchHandler}>
+			<Input
+				size="small"
+				className="tag-input"
+				onBlur={() => onBlur(false)}
+			/>
+		</AutoComplete>
+	);
+};
