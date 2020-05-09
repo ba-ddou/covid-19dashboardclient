@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tag, Input, Tooltip } from "antd";
 import { Plus } from "react-feather";
-import { TagSearchBar } from "app/components/SearchBar";
+import { SearchBar } from "app/components/SearchBar";
 import "./styles.sass";
 
 const hues = [
@@ -17,78 +17,63 @@ const hues = [
 	"geekblue",
 	"purple",
 ];
-class MarkSelector extends React.Component {
-	state = {
-		tags: [],
-		inputVisible: false,
-	};
+const MarkSelector = ({ countries, setCountries }) => {
+	let [inputVisible, setInputVisible] = useState(false);
 
-	handleClose = (removedTag, color) => {
+	let handleClose = (removedCountry, color) => {
 		hues.push(color);
-		const tags = this.state.tags.filter((tag) => tag !== removedTag);
-		console.log(tags);
-		this.setState({ tags });
+		setCountries(countries.filter((tag) => tag !== removedCountry));
 	};
 
-	showInput = () => {
-		this.setState({ inputVisible: true });
+	let showInput = () => {
+		setInputVisible(true);
 	};
 
-	onSelectHandler = (newTag) => {
-		if (newTag) {
-			let isSelected = this.state.tags.find(
-				(elem) => elem.name === newTag.value
+	let onSelectHandler = (newCountry) => {
+		if (newCountry) {
+			let isSelected = countries.find(
+				(elem) => elem.name === newCountry.value
 			);
 			if (!isSelected) {
-				let { tags } = this.state;
-				tags = [...tags, { name: newTag.value, color: hues.pop() }];
-				this.setState({
-					tags,
-					inputVisible: false,
-				});
-			} else {
-				this.setState({
-					inputVisible: false,
-				});
+				setCountries([
+					...countries,
+					{ name: newCountry.value, color: hues.pop() },
+				]);
+				setInputVisible(false);
+				return 0;
 			}
-		} else {
-			this.setState({
-				inputVisible: false,
-			});
 		}
+		setInputVisible(false);
 	};
 
-	render() {
-		const { tags, inputVisible } = this.state;
-		return (
-			<div id="markSelector">
-				{tags.map((tag, index) => {
-					return (
-						<Tag
-							closable
-							className="edit-tag"
-							key={tag.name}
-							color={tag.color}
-							onClose={() => this.handleClose(tag, tag.color)}>
-							{tag.name}
-						</Tag>
-					);
-				})}
-				{inputVisible && (
-					<TagSearchBar
-						mainPanel={false}
-						onSelect={this.onSelectHandler}
-						onBlur={this.onSelectHandler}
-					/>
-				)}
-				{!inputVisible && (
-					<Tag className="site-tag-plus" onClick={this.showInput}>
-						<Plus size={15} /> New Tag
+	return (
+		<div id="markSelector">
+			{countries.map((tag, index) => {
+				return (
+					<Tag
+						closable
+						className="edit-tag"
+						key={tag.name}
+						color={tag.color}
+						onClose={() => handleClose(tag, tag.color)}>
+						{tag.name}
 					</Tag>
-				)}
-			</div>
-		);
-	}
-}
+				);
+			})}
+			{inputVisible && (
+				<SearchBar
+					mainPanel={false}
+					onSelect={onSelectHandler}
+					onBlur={onSelectHandler}
+				/>
+			)}
+			{!inputVisible && (
+				<Tag className="site-tag-plus" onClick={showInput}>
+					<Plus size={15} /> New Tag
+				</Tag>
+			)}
+		</div>
+	);
+};
 
 export default MarkSelector;
