@@ -45,7 +45,7 @@ const App = () => {
 					/>
 				</div>
 				<div id="mainContainer-subC2">
-					<AreaSeries />
+					<AreaSeries country={country} />
 					<MarkSeries />
 				</div>
 			</div>

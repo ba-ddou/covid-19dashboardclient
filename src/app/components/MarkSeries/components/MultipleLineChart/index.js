@@ -3,7 +3,7 @@ import { Line } from "@antv/g2plot";
 
 let getLine = (data, color) => {
 	return new Line(document.getElementById("multipleLineChart"), {
-		padding: [20, 20, 150, 60],
+		// padding: [0, 20, 20, 60],
 		forceFit: true,
 		data,
 		xField: "date",
@@ -40,10 +40,6 @@ let getLine = (data, color) => {
 const MultipleLineChart = ({ timeSeriesData }) => {
 	useEffect(() => {
 		async function run() {
-			// let data = await fetch(
-			// 	"https://g2plot.antv.vision/en/examples/data/GDP.json"
-			// ).then((res) => res.json());
-
 			let data = timeSeriesData.reduce(
 				(accumulator, current) => [...accumulator, ...current.stats],
 				[]
