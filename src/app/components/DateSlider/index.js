@@ -8,8 +8,8 @@ let firstDateMs = new Date("2020-01-01").getTime(); // 01/01/2020;
 
 // return the number of days between two date ( first & last included )
 function dateToTicks(lastDate) {
-	let lastDateISOString = lastDate.split("/").reverse().join("-");
-	let lastDateMs = new Date(lastDateISOString).getTime();
+	// let lastDateISOString = lastDate.split("/").reverse().join("-");
+	let lastDateMs = new Date(lastDate).getTime();
 
 	let dif = Math.abs(lastDateMs - firstDateMs);
 
@@ -28,8 +28,7 @@ function tickToDateServerFomat(tick) {
 	let tickMs = parseInt(firstDateMs) + (tick - 1) * 24 * 60 * 60 * 1000;
 	let date = new Date(tickMs);
 
-	date = date.toISOString().slice(0, 10);
-	return date.split("-").reverse().join("/");
+	return date.toISOString().slice(0, 10);
 }
 
 const DateSlider = ({ lastDate, onDateChange }) => {

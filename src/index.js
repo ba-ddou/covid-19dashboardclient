@@ -6,7 +6,7 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 const client = new ApolloClient({
-	uri: "https://covid-19apolloserver.herokuapp.com/",
+	uri: "http://localhost:4000/",
 });
 
 ReactDOM.render(

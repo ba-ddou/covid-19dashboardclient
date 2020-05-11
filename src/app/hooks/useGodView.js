@@ -16,20 +16,17 @@ const QUERY = gql`
 
 // return the date 1 day in the past
 function toPreviousDate(date) {
-	let dateISOString = date.split("/").reverse().join("-");
-	let dateMs = new Date(dateISOString).getTime();
+	let dateMs = new Date(date).getTime();
 	dateMs -= 1000 * 60 * 60 * 24;
 	return new Date(dateMs)
 		.toISOString()
-		.slice(0, 10)
-		.split("-")
-		.reverse()
-		.join("/");
+		.slice(0, 10);
 }
 // dates in the array are the date who's previous day's data is already fetched
 // the first day of the time series is a special cases, since it has no previous day
-var fetchedDates = ["01/01/2020"];
+var fetchedDates = ["2020-01-01"];
 const useGodView = (date) => {
+	console.log(date);
 	const { loading, error, data, client } = useQuery(QUERY, {
 		variables: { date },
 	});
@@ -44,7 +41,7 @@ const useGodView = (date) => {
 			variables: { date: previousDate },
 		});
 	}
-
+	console.log(data,error);
 	return { loading, error, godViewData: data };
 };
 
