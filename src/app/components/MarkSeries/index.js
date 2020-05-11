@@ -3,6 +3,7 @@ import MarkSelector from "app/components/MarkSelector";
 import "./styles.sass";
 import useTimeSeries from "app/hooks/useTimeSeries";
 import MultipleLineChart from "./components/MultipleLineChart";
+import Loader from "app/components/Loader";
 
 const MarkSeries = () => {
 	let [countries, setCountries] = useState(["morocco"]);
@@ -10,13 +11,12 @@ const MarkSeries = () => {
 	return (
 		<div id="markSeries" className="mainPanel">
 			<MarkSelector countries={countries} setCountries={setCountries} />
-			<MultipleLineChart
-				timeSeriesData={data ? data.timeSeries : false}
-			/>
-			{/* <div>
-				{loading ? <p>loading...</p> : <p>{JSON.stringify(data)}</p>}
-				{error && <p>{`Error : ${error}`}</p>}
-			</div> */}
+			<div id="markSeries-chart">
+				<MultipleLineChart
+					timeSeriesData={data ? data.timeSeries : false}
+				/>
+				{loading && <Loader />}
+			</div>
 		</div>
 	);
 };
