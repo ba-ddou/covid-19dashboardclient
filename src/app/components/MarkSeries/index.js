@@ -5,7 +5,7 @@ import useTimeSeries from "app/hooks/useTimeSeries";
 import MultipleLineChart from "./components/MultipleLineChart";
 
 const MarkSeries = () => {
-	let [countries, setCountries] = useState(["global"]);
+	let [countries, setCountries] = useState(["morocco"]);
 	let { loading, error, data } = useTimeSeries(countries);
 	return (
 		<div id="markSeries" className="mainPanel">

@@ -16,8 +16,8 @@ import Footer from "./components/Footer";
 import useGodView from "app/hooks/useGodView";
 
 const App = () => {
-	let [country, setCountry] = useState({ value: "global", ISO_A2: "global" });
-	let [date, setDate] = useState("2020-01-05");
+	let [country, setCountry] = useState({ value: "morocco", ISO_A2: "MA" });
+	let [date, setDate] = useState("2020-05-08");
 
 	let { loading, error, godViewData } = useGodView(date);
 
@@ -34,8 +34,10 @@ const App = () => {
 						<SearchBar onSelect={selectCountry} mainPanel={true} />
 						<Info
 							country={country}
-							godViewData={(loading && !error) ? false : godViewData.godView}
-							lastDate="2020-01-05"
+							godViewData={
+								loading && !error ? false : godViewData.godView
+							}
+							lastDate="2020-05-08"
 							onDateChange={onDateChange}
 						/>
 					</div>
