@@ -11,7 +11,7 @@ const geoUrl =
 	"https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
 const colorScale = scaleLinear()
-	.domain([1000000, 400000000])
+	.domain([100, 200000])
 	.range(["#ffedea", "#ff5233"]);
 const rounded = (num) => {
 	if (num > 1000000000) {
@@ -86,11 +86,16 @@ const MapChart = ({ setTooltipContent, onClick, godViewData }) => {
 									style={{
 										default: {
 											fill: ((_) => {
-												const {
-													POP_EST,
-												} = geo.properties;
-												return POP_EST
-													? colorScale(POP_EST)
+												const { NAME } = geo.properties;
+												let {
+													confirmed,
+												} = extractStats(
+													NAME,
+													godViewData
+												);
+												return typeof confirmed ===
+													"number"
+													? colorScale(confirmed)
 													: "#F5F4F6";
 											})(),
 											outline: "none",

@@ -17,7 +17,7 @@ import useGodView from "app/hooks/useGodView";
 
 const App = () => {
 	let [country, setCountry] = useState({ value: "morocco", ISO_A2: "MA" });
-	let [date, setDate] = useState("2020-05-08");
+	let [date, setDate] = useState("2020-05-09");
 
 	let { loading, error, godViewData } = useGodView(date);
 
@@ -37,7 +37,7 @@ const App = () => {
 							godViewData={
 								loading && !error ? false : godViewData.godView
 							}
-							lastDate="2020-05-08"
+							lastDate="2020-05-09"
 							onDateChange={onDateChange}
 						/>
 					</div>
