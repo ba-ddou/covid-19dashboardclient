@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { Area } from "@antv/g2plot";
 import useTimeSeries from "app/hooks/useTimeSeries";
+import "./styles.sass";
+import Loader from "app/components/Loader";
 
 let getArea = (data) => {
-	return new Area(document.getElementById("areaSeries"), {
+	return new Area(document.getElementById("areaSeries-chart"), {
 		data,
 		xField: "date",
 		yField: "confirmed",
@@ -30,12 +32,17 @@ const AreaSeries = ({ country }) => {
 			}
 			if (data) run();
 			return () => {
-				document.getElementById("areaSeries").innerHTML = "";
+				document.getElementById("areaSeries-chart").innerHTML = "";
 			};
 		},
 		[data]
 	);
-	return <div id="areaSeries" className="mainPanel"></div>;
+	return (
+		<div id="areaSeries" className="mainPanel">
+			<div id="areaSeries-chart"></div>
+			{loading && <Loader />}
+		</div>
+	);
 };
 
 export default AreaSeries;
