@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, Calendar } from "react-feather";
 import { Slider } from "antd";
 import "./styles.sass";
 
-let firstDateMs = new Date("2020-03-01").getTime();
+let firstDateMs = new Date("2020-01-22").getTime();
 
 // return the number of days between two date ( first & last included )
 function dateToTicks(lastDate) {

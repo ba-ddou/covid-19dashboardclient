@@ -22,7 +22,7 @@ function toPreviousDate(date) {
 }
 // dates in the array are the date who's previous day's data is already fetched
 // the first day of the time series is a special cases, since it has no previous day
-var fetchedDates = ["2020-03-01"];
+var fetchedDates = ["2020-01-22"];
 const useGodView = (date) => {
 	console.log(date);
 	const { loading, error, data, client } = useQuery(QUERY, {

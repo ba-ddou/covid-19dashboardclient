@@ -45,9 +45,9 @@ const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 			</span>
 			<DateSlider lastDate={lastDate} onDateChange={onDateChange} />
 			<div id="infoPanel-stats">
-				<Stat number={recovered} name="Deaths" />
+				<Stat number={dead} name="Deaths" />
 				<Stat number={confirmed} name="Infections" />
-				<Stat number={dead} name="Recoveries" />
+				<Stat number={recovered} name="Recoveries" />
 			</div>
 		</div>
 	);
