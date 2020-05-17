@@ -8,7 +8,7 @@ let getArea = (data) => {
 	return new Area(document.getElementById("areaSeries-chart"), {
 		data,
 		xField: "date",
-		yField: "confirmed",
+		yField: "active",
 		xAxis: {
 			type: "dateTime",
 			tickCount: 5,

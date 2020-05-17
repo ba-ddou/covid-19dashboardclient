@@ -12,6 +12,7 @@ const QUERY = gql`
 				confirmed
 				recovered
 				dead
+				active
 			}
 		}
 	}
