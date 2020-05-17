@@ -15,6 +15,7 @@ let getArea = (data) => {
 		},
 		color: "#FF5533",
 		smooth: true,
+		legend: true,
 	});
 };
 
