@@ -4,9 +4,56 @@
 
 #root
     margin: 1rem 1rem
-    display: flex
-    flex-direction: column
-    min-height: -moz-fill-available
-    min-height: -webkit-fill-available
-    min-height: stretch
-    
+    // display: flex
+    // flex-direction: column
+    // min-height: -moz-fill-available
+    // min-height: -webkit-fill-available
+    #mainContainer
+        display: flex
+        flex-direction: column
+        margin-bottom: 1rem
+
+        .mainPanel
+            height: 100%
+            background-color: $white
+            border-radius: 8px
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+        // SearchBar, Info, and Map
+        #mainContainer-subC1
+            display: flex
+            height: 35rem
+            margin-bottom: 1rem
+
+            // SearchBar & Info
+            #mainContainer-subC1-subC
+                display: flex
+                flex-direction: column
+                height: 100%
+                margin-right: .5rem
+                flex: 2
+                .mainPanel:nth-child(1)
+                    margin-bottom: .5rem
+                    background-color: transparent
+                    flex: 0
+                    .ant-select
+                        width: 100%
+                .mainPanel:nth-child(2)
+                    margin-top: .5rem
+                    flex: 1
+            >.mainPanel:nth-child(2)
+                margin-left: .5rem
+                flex: 5
+
+        // AreaSeries & MarkSeries
+        #mainContainer-subC2
+                display: flex
+                height: 28rem
+                .mainPanel
+                    flex: 1
+                .mainPanel:nth-child(1)
+                    margin-right: .5rem
+                .mainPanel:nth-child(2)
+                    margin-left: .5rem
+
+        

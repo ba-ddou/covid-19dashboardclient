@@ -3,10 +3,15 @@ import { AutoComplete, Input } from "antd";
 import "./styles.sass";
 import countries from "./countries";
 
-const SearchBar = (props) => {
+export const SearchBar = ({ onSelect, onBlur, mainPanel }) => {
 	const [options, setOptions] = useState();
 
-	const onSearch = (searchText) => {
+	const onSelectHandler = (value) => {
+		let target = countries.find((elem) => elem.value == value);
+		onSelect(target);
+	};
+
+	const onSearchHandler = (searchText) => {
 		setOptions(
 			countries.filter((element) => {
 				return element.value.includes(searchText);
@@ -15,18 +20,22 @@ const SearchBar = (props) => {
 	};
 
 	return (
-		<>
+		<div className={mainPanel ? "mainPanel searchBar" : "searchBar"}>
 			<AutoComplete
 				options={options}
-				style={{
-					width: 200,
-				}}
-				onSelect={props.onSelect}
-				onSearch={onSearch}>
-				<Input.Search size="medium" placeholder="country name" />
+				onSelect={onSelectHandler}
+				onSearch={onSearchHandler}>
+				{onBlur ? (
+					<Input
+						size="small"
+						className="tag-input"
+						onBlur={() => onBlur(false)}
+						ref={(input) => input && input.focus()}
+					/>
+				) : (
+					<Input.Search size="medium" placeholder="country name" />
+				)}
 			</AutoComplete>
-		</>
+		</div>
 	);
 };
-
-export default SearchBar;
