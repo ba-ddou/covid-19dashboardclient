@@ -9,12 +9,7 @@ const extractStats = (country, godViewData) => {
 			(elem) => elem.territory == country.toLowerCase()
 		);
 
-		if (res)
-			return {
-				confirmed: res.confirmed,
-				recovered: res.recovered,
-				dead: res.dead,
-			};
+		if (res) return res;
 	}
 	return {
 		confirmed: "unavailable",
@@ -23,20 +18,42 @@ const extractStats = (country, godViewData) => {
 	};
 };
 
-const Stat = ({ number, name }) => {
+const Stat = ({ number, badge, name }) => {
 	return (
 		<div className="infoPanel-stats-stat">
-			<span>{number}</span>
+			<div>
+				<span>{number}</span>
+				{(() => {
+					if (typeof badge === "number") {
+						if (badge > 0)
+							return (
+								<span className="badge-positive">{`+${badge}`}</span>
+							);
+						else if (badge < 0)
+							return (
+								<span className="badge-negative">{badge}</span>
+							);
+						else
+							return (
+								<span className="badge-positive">{`+${badge}`}</span>
+							);
+					} else return <span></span>;
+				})()}
+			</div>
 			<span>{name}</span>
 		</div>
 	);
 };
 
 const Info = ({ country, godViewData, lastDate, onDateChange }) => {
-	let { confirmed, recovered, dead } = extractStats(
-		country.value,
-		godViewData
-	);
+	let {
+		confirmed,
+		newConfirmed,
+		recovered,
+		newRecovered,
+		dead,
+		newDead,
+	} = extractStats(country.value, godViewData);
 
 	return (
 		<div id="infoPanel" className="mainPanel">
@@ -45,9 +62,17 @@ const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 			</span>
 			<DateSlider lastDate={lastDate} onDateChange={onDateChange} />
 			<div id="infoPanel-stats">
-				<Stat number={dead} name="Deaths" />
-				<Stat number={confirmed} name="Infections" />
-				<Stat number={recovered} name="Recoveries" />
+				<Stat number={dead} badge={newDead} name="Deaths" />
+				<Stat
+					number={confirmed}
+					badge={newConfirmed}
+					name="Confirmed Cases"
+				/>
+				<Stat
+					number={recovered}
+					badge={newRecovered}
+					name="Recoveries"
+				/>
 			</div>
 		</div>
 	);
