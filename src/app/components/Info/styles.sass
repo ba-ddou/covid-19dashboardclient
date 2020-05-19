@@ -21,8 +21,14 @@
     #infoPanel-stats
         flex: 3
         display: flex
-        justify-content: space-between
-        align-content: center
+        flex-direction: column
+        justify-content: space-around
+        // align-content: center
+        >div
+            display: flex
+            justify-content: space-around
+            align-content: center
+
         .infoPanel-stats-stat
             display: flex
             flex-direction: column

@@ -47,6 +47,7 @@ const Stat = ({ number, badge, name }) => {
 
 const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 	let {
+		active,
 		confirmed,
 		newConfirmed,
 		recovered,
@@ -62,17 +63,22 @@ const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 			</span>
 			<DateSlider lastDate={lastDate} onDateChange={onDateChange} />
 			<div id="infoPanel-stats">
-				<Stat number={dead} badge={newDead} name="Deaths" />
-				<Stat
-					number={confirmed}
-					badge={newConfirmed}
-					name="Confirmed Cases"
-				/>
-				<Stat
-					number={recovered}
-					badge={newRecovered}
-					name="Recoveries"
-				/>
+				<div>
+					<Stat
+						number={confirmed}
+						badge={newConfirmed}
+						name="Confirmed Cases"
+					/>
+					<Stat number={active} badge={0} name="Active Cases" />
+				</div>
+				<div>
+					<Stat number={dead} badge={newDead} name="Deaths" />
+					<Stat
+						number={recovered}
+						badge={newRecovered}
+						name="Recoveries"
+					/>
+				</div>
 			</div>
 		</div>
 	);
