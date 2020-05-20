@@ -5,11 +5,15 @@ import { gql } from "apollo-boost";
 const QUERY = gql`
 	query($date: String!) {
 		godView(date: $date) {
-			date
 			territory
+			date
+			active
 			confirmed
+			newConfirmed
 			recovered
+			newRecovered
 			dead
+			newDead
 		}
 	}
 `;

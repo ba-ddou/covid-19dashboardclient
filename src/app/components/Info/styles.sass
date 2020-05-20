@@ -21,8 +21,14 @@
     #infoPanel-stats
         flex: 3
         display: flex
-        justify-content: space-between
-        align-content: center
+        flex-direction: column
+        justify-content: space-around
+        // align-content: center
+        >div
+            display: flex
+            justify-content: space-around
+            align-content: center
+
         .infoPanel-stats-stat
             display: flex
             flex-direction: column
@@ -30,9 +36,19 @@
             align-items: center
             color: $mateBlack
             font-family: GeomanistBold
-            span:nth-child(1)
-                
-                font-size: 1.5rem
+            div:nth-child(1)
+                span:nth-child(1)
+                    font-size: 1.5rem
+                span:nth-child(2)
+                    display: inline-block
+                    margin-left: 3px
+                    padding: 0 3px 0 3px
+                    border-radius: .3rem
+                .badge-positive
+                    background-color: $errorColor
+                .badge-negative
+                    background-color: $successColor
+
             span:nth-child(2)
                 
                 

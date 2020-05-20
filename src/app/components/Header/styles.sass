@@ -1,0 +1,26 @@
+@import 'styles/index.sass'
+
+#header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 1rem
+    h1
+        font-family: GeomanistBold
+        margin-bottom: unset
+    >div
+        display: flex
+        justify-content: space-between
+        align-items: center
+        >span
+            display: inline-block
+            margin: 0 1rem
+            color: $mateBlack
+            font-size: 1.2rem
+            font-family: GeomanistRegular
+            transition: all 200ms ease-in-out
+            cursor: pointer
+            &:hover
+                font-weight: bold
+                color: $brandColor
+
