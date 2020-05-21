@@ -37,7 +37,7 @@ const App = () => {
 							godViewData={
 								loading && !error ? false : godViewData.godView
 							}
-							lastDate="2020-05-11"
+							lastDate="2020-05-20"
 							onDateChange={onDateChange}
 						/>
 					</div>
