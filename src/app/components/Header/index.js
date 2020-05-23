@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Instagram } from "react-feather";
-import { Modal } from "antd";
+import InfoModals from "app/components/InfoModals";
 import "./styles.sass";
 
 const Header = () => {
@@ -19,30 +19,16 @@ const Header = () => {
 							size={18}
 							style={{ marginRight: ".5rem" }}
 						/>
-						<span>Follow @ba-ddou</span>
+						<span>Follow @ba_ddou</span>
 					</div>
 				</a>
 			</div>
-			<Modal
-				title="About"
-				centered
-				footer={false}
-				visible={aboutModal}
-				onCancel={(_) => setAboutModal(false)}>
-				<p>some contents...</p>
-				<p>some contents...</p>
-				<p>some contents...</p>
-			</Modal>
-			<Modal
-				title="Contact"
-				centered
-				footer={false}
-				visible={contactModal}
-				onCancel={(_) => setContactModal(false)}>
-				<p>some contents...</p>
-				<p>some contents...</p>
-				<p>some contents...</p>
-			</Modal>
+			<InfoModals
+				aboutModal={aboutModal}
+				setAboutModal={setAboutModal}
+				contactModal={contactModal}
+				setContactModal={setContactModal}
+			/>
 		</div>
 	);
 };
