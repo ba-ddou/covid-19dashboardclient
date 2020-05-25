@@ -7,6 +7,7 @@ import Loader from "app/components/Loader";
 let getArea = (data) => {
 	return new Area(document.getElementById("areaSeries-chart"), {
 		data,
+		padding: [10, 20, 30, 60],
 		xField: "date",
 		yField: "active",
 		xAxis: {
@@ -39,7 +40,7 @@ const AreaSeries = ({ country }) => {
 		[data]
 	);
 	return (
-		<div id="areaSeries" className="mainPanel">
+		<div id="areaSeries" className="mainPanel rootPanel">
 			<div id="areaSeries-chart"></div>
 			{loading && <Loader />}
 		</div>

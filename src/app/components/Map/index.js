@@ -7,7 +7,7 @@ const Map = ({ onClick, godViewData }) => {
 	const [tooltipContent, setTooltipContent] = useState("");
 	// let setTooltipContent = (content) => {};
 	return (
-		<div id="mapPanel" className="mainPanel">
+		<div id="mapPanel" className="mainPanel rootPanel">
 			<MapChart
 				onClick={onClick}
 				setTooltipContent={setTooltipContent}

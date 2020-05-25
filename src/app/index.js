@@ -30,14 +30,14 @@ const App = () => {
 			<Header />
 			<div id="mainContainer">
 				<div id="mainContainer-subC1">
-					<div id="mainContainer-subC1-subC">
+					<div id="mainContainer-subC1-subC" className="rootPanel">
 						<SearchBar onSelect={selectCountry} mainPanel={true} />
 						<Info
 							country={country}
 							godViewData={
 								loading && !error ? false : godViewData.godView
 							}
-							lastDate="2020-05-11"
+							lastDate="2020-05-20"
 							onDateChange={onDateChange}
 						/>
 					</div>

@@ -8,6 +8,7 @@ const QUERY = gql`
 			territory
 			date
 			active
+			newActive
 			confirmed
 			newConfirmed
 			recovered

@@ -3,7 +3,7 @@ import { Line } from "@antv/g2plot";
 
 let getLine = (data, color) => {
 	return new Line(document.getElementById("multipleLineChart"), {
-		// padding: [0, 20, 20, 60],
+		padding: [0, 20, 30, 60],
 		forceFit: true,
 		data,
 		xField: "date",
@@ -12,6 +12,7 @@ let getLine = (data, color) => {
 		// color: (elem) => color[elem.territory],
 		xAxis: {
 			type: "dateTime",
+			tickCount: 5,
 			label: {
 				visible: true,
 				autoHide: true,

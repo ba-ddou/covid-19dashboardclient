@@ -11,11 +11,7 @@ const extractStats = (country, godViewData) => {
 
 		if (res) return res;
 	}
-	return {
-		confirmed: "unavailable",
-		recovered: "unavailable",
-		dead: "unavailable",
-	};
+	return {};
 };
 
 const Stat = ({ number, badge, name }) => {
@@ -48,6 +44,7 @@ const Stat = ({ number, badge, name }) => {
 const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 	let {
 		active,
+		newActive,
 		confirmed,
 		newConfirmed,
 		recovered,
@@ -69,7 +66,11 @@ const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 						badge={newConfirmed}
 						name="Confirmed Cases"
 					/>
-					<Stat number={active} badge={0} name="Active Cases" />
+					<Stat
+						number={active}
+						badge={newActive}
+						name="Active Cases"
+					/>
 				</div>
 				<div>
 					<Stat number={dead} badge={newDead} name="Deaths" />

@@ -9,7 +9,7 @@ const MarkSeries = () => {
 	let [countries, setCountries] = useState(["morocco"]);
 	let { loading, error, data } = useTimeSeries(countries);
 	return (
-		<div id="markSeries" className="mainPanel">
+		<div id="markSeries" className="mainPanel rootPanel">
 			<MarkSelector countries={countries} setCountries={setCountries} />
 			<div id="markSeries-chart">
 				<MultipleLineChart
