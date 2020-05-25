@@ -14,7 +14,7 @@ export const SearchBar = ({ onSelect, onBlur, mainPanel }) => {
 	const onSearchHandler = (searchText) => {
 		setOptions(
 			countries.filter((element) => {
-				return element.value.includes(searchText);
+				return element.value.includes(searchText.toLowerCase());
 			})
 		);
 	};
