@@ -1,6 +1,8 @@
 import React, { useState, memo } from "react";
 import MapChart from "./components/MapChart";
 import ReactTooltip from "react-tooltip";
+import PanelHeader from "app/components/PanelHeader";
+
 import "./styles.sass";
 
 const Map = ({ onClick, godViewData }) => {
@@ -8,6 +10,7 @@ const Map = ({ onClick, godViewData }) => {
 	// let setTooltipContent = (content) => {};
 	return (
 		<div id="mapPanel" className="mainPanel rootPanel">
+			<PanelHeader title="Map view" />
 			<MapChart
 				onClick={onClick}
 				setTooltipContent={setTooltipContent}

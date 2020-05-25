@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import MarkSelector from "app/components/MarkSelector";
-import "./styles.sass";
 import useTimeSeries from "app/hooks/useTimeSeries";
 import MultipleLineChart from "./components/MultipleLineChart";
 import Loader from "app/components/Loader";
+import PanelHeader from "app/components/PanelHeader";
+
+import "./styles.sass";
 
 const MarkSeries = () => {
 	let [countries, setCountries] = useState(["morocco"]);
 	let { loading, error, data } = useTimeSeries(countries);
 	return (
 		<div id="markSeries" className="mainPanel rootPanel">
+			<PanelHeader title="Mark series" />
 			<MarkSelector countries={countries} setCountries={setCountries} />
 			<div id="markSeries-chart">
 				<MultipleLineChart

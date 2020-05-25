@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Area } from "@antv/g2plot";
 import useTimeSeries from "app/hooks/useTimeSeries";
-import "./styles.sass";
 import Loader from "app/components/Loader";
+import PanelHeader from "app/components/PanelHeader";
+
+import "./styles.sass";
 
 let getArea = (data) => {
 	return new Area(document.getElementById("areaSeries-chart"), {
@@ -41,6 +43,7 @@ const AreaSeries = ({ country }) => {
 	);
 	return (
 		<div id="areaSeries" className="mainPanel rootPanel">
+			<PanelHeader title="Area Series" />
 			<div id="areaSeries-chart"></div>
 			{loading && <Loader />}
 		</div>

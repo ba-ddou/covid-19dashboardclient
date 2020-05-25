@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "antd";
-import {Instagram, Linkedin, Mail} from "react-feather"
+import { Instagram, Linkedin, Mail } from "react-feather";
 import "./styles.sass";
 
 const InfoModals = ({
@@ -20,7 +20,9 @@ const InfoModals = ({
 				<div className="infoModal">
 					<span>
 						This dashboard was built by{" "}
-						<a target="#_ig" href="https://www.instagram.com/ba_ddou/">
+						<a
+							target="#_ig"
+							href="https://www.instagram.com/ba_ddou/">
 							Abdelbassite Badou
 						</a>
 					</span>
@@ -56,46 +58,43 @@ const InfoModals = ({
 				visible={contactModal}
 				onCancel={(_) => setContactModal(false)}>
 				<div className="infoModal">
-					<span>Please mention 'Covid-19 dashboard' in the subject of any
-					and all inquiries</span>
+					<span>
+						Please mention 'Covid-19 dashboard' in the subject of
+						any and all inquiries
+					</span>
 					<a
 						href="https://www.linkedin.com/in/abdelbassite-badou/"
-                        target="_blank_linkedin">
+						target="_blank_linkedin">
 						<div className="contactBtn linkedinButton">
 							<Linkedin
 								color="white"
-                                size={18}
-                                style={{ marginRight: ".5rem" }}
+								size={18}
+								style={{ marginRight: ".5rem" }}
 							/>
 							<span>Abdelbassite Badou</span>
 						</div>
 					</a>
-                    <a
+					<a
 						href="https://www.instagram.com/ba_ddou/"
-                        target="_blank_ig">
+						target="_blank_ig">
 						<div className="contactBtn igButton">
 							<Instagram
 								color="white"
-                                size={18}
-                                style={{ marginRight: ".5rem" }}
+								size={18}
+								style={{ marginRight: ".5rem" }}
 							/>
 							<span>@ba_ddou</span>
 						</div>
 					</a>
 
-                    <a
-						// href="https://www.instagram.com/ba_ddou/"
-                        target="_blank"
-                        >
-						<div className="contactBtn gmailButton">
-							<Mail
-								color="white"
-                                size={18}
-                                style={{ marginRight: ".5rem" }}
-							/>
-							<span>abdelbassite.badou@gmail.com</span>
-						</div>
-					</a>
+					<div className="contactBtn gmailButton">
+						<Mail
+							color="white"
+							size={18}
+							style={{ marginRight: ".5rem" }}
+						/>
+						<span>abdelbassite.badou@gmail.com</span>
+					</div>
 				</div>
 			</Modal>
 		</>
