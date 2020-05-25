@@ -30,7 +30,7 @@ const App = () => {
 			<Header />
 			<div id="mainContainer">
 				<div id="mainContainer-subC1">
-					<div id="mainContainer-subC1-subC">
+					<div id="mainContainer-subC1-subC" className="rootPanel">
 						<SearchBar onSelect={selectCountry} mainPanel={true} />
 						<Info
 							country={country}

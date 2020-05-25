@@ -11,11 +11,7 @@ const extractStats = (country, godViewData) => {
 
 		if (res) return res;
 	}
-	return {
-		confirmed: "unavailable",
-		recovered: "unavailable",
-		dead: "unavailable",
-	};
+	return {};
 };
 
 const Stat = ({ number, badge, name }) => {

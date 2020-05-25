@@ -20,7 +20,7 @@ const InfoModals = ({
 				<div className="infoModal">
 					<span>
 						This dashboard was built by{" "}
-						<a target="#_ig" href="#">
+						<a target="#_ig" href="https://www.instagram.com/ba_ddou/">
 							Abdelbassite Badou
 						</a>
 					</span>
