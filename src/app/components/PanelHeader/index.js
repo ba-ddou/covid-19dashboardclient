@@ -7,7 +7,7 @@ import "./styles.sass";
 const PanelHeader = ({ title, ...props }) => {
 	return (
 		<div className="panelHeader">
-			<h2>{title}</h2>
+			<h3>{title}</h3>
 			<div>
 				<SettingMenu {...props} />
 				<HelpTooltip {...props} />

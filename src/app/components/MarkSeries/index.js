@@ -14,7 +14,7 @@ const MarkSeries = () => {
 	return (
 		<div id="markSeries" className="mainPanel rootPanel">
 			<PanelHeader
-				title={`Cross country statistics comparison`}
+				title={`Cross country comparison`}
 				parameter={parameter}
 				setParameter={setParameter}
 				helpText={`Compare covid-19 statistics between countries`}

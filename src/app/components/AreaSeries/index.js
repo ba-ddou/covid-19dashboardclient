@@ -51,7 +51,7 @@ const AreaSeries = ({ country }) => {
 	return (
 		<div id="areaSeries" className="mainPanel rootPanel">
 			<PanelHeader
-				title={`Daily Statistics changes in ${country.value}`}
+				title={`Daily Statistics changes`}
 				parameter={parameter}
 				setParameter={setParameter}
 				helpText={`The progression of covid-19
