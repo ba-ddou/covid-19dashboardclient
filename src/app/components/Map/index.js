@@ -10,7 +10,10 @@ const Map = ({ onClick, godViewData }) => {
 	// let setTooltipContent = (content) => {};
 	return (
 		<div id="mapPanel" className="mainPanel rootPanel">
-			<PanelHeader title="Map view" />
+			<PanelHeader
+				title="Map view"
+				helpText={`a chrophlete map showing covid-19 spread around the world`}
+			/>
 			<MapChart
 				onClick={onClick}
 				setTooltipContent={setTooltipContent}

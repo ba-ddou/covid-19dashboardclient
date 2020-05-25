@@ -4,13 +4,13 @@ import SettingMenu from "./components/SettingsMenu";
 
 import "./styles.sass";
 
-const PanelHeader = ({ title }) => {
+const PanelHeader = ({ title, helpText }) => {
 	return (
 		<div className="panelHeader">
 			<h2>{title}</h2>
 			<div>
 				<SettingMenu />
-				<HelpTooltip />
+				<HelpTooltip helpText={helpText} />
 			</div>
 		</div>
 	);

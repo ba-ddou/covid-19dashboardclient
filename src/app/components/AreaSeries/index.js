@@ -43,7 +43,11 @@ const AreaSeries = ({ country }) => {
 	);
 	return (
 		<div id="areaSeries" className="mainPanel rootPanel">
-			<PanelHeader title="Area Series" />
+			<PanelHeader
+				title="Area Series"
+				helpText={`The progression of covid-19
+					statistics in the current country`}
+			/>
 			<div id="areaSeries-chart"></div>
 			{loading && <Loader />}
 		</div>

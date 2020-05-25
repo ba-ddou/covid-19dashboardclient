@@ -12,7 +12,10 @@ const MarkSeries = () => {
 	let { loading, error, data } = useTimeSeries(countries);
 	return (
 		<div id="markSeries" className="mainPanel rootPanel">
-			<PanelHeader title="Mark series" />
+			<PanelHeader
+				title="Mark series"
+				helpText={`Compare covid-19 statistics between countries`}
+			/>
 			<MarkSelector countries={countries} setCountries={setCountries} />
 			<div id="markSeries-chart">
 				<MultipleLineChart

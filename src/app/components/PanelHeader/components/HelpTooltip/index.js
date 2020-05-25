@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { HelpCircle } from "react-feather";
+import { Tooltip } from "antd";
 
 import "./styles.sass";
 
-const HelpTooltip = () => {
+const HelpTooltip = ({ helpText }) => {
+	// let [content, setContent] = useState("");
 	return (
 		<div className="helpTooltip">
-			<HelpCircle size={18} />
+			<Tooltip title={helpText} placement="bottomRight">
+				<HelpCircle size={18} />
+			</Tooltip>
 		</div>
 	);
 };
