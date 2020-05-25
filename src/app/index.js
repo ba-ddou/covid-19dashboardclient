@@ -16,7 +16,10 @@ import Footer from "./components/Footer";
 import useGodView from "app/hooks/useGodView";
 
 const App = () => {
-	let [country, setCountry] = useState({ value: "morocco", ISO_A2: "MA" });
+	let [country, setCountry] = useState({
+		value: "global",
+		ISO_A2: "undefined",
+	});
 	let [date, setDate] = useState("2020-05-11");
 
 	let { loading, error, godViewData } = useGodView(date);
@@ -37,7 +40,7 @@ const App = () => {
 							godViewData={
 								loading && !error ? false : godViewData.godView
 							}
-							lastDate="2020-05-20"
+							lastDate="2020-05-23"
 							onDateChange={onDateChange}
 						/>
 					</div>

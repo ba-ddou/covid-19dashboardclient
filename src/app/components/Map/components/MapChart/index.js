@@ -29,21 +29,12 @@ const extractStats = (country, godViewData) => {
 			(elem) => elem.territory == country.toLowerCase()
 		);
 
-		if (res)
-			return {
-				confirmed: res.confirmed,
-				recovered: res.recovered,
-				dead: res.dead,
-			};
+		if (res) return res;
 	}
-	return {
-		confirmed: "unavailable",
-		recovered: "unavailable",
-		dead: "unavailable",
-	};
+	return {};
 };
 
-const MapChart = ({ setTooltipContent, onClick, godViewData }) => {
+const MapChart = ({ setTooltipContent, onClick, godViewData, parameter }) => {
 	return (
 		<>
 			<ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -87,15 +78,17 @@ const MapChart = ({ setTooltipContent, onClick, godViewData }) => {
 										default: {
 											fill: ((_) => {
 												const { NAME } = geo.properties;
-												let {
-													confirmed,
-												} = extractStats(
+												let stats = extractStats(
 													NAME,
 													godViewData
 												);
-												return typeof confirmed ===
-													"number"
-													? colorScale(confirmed)
+												// console.log(stats, parameter);
+												return typeof stats[
+													parameter
+												] === "number"
+													? colorScale(
+															stats[parameter]
+													  )
 													: "#F5F4F6";
 											})(),
 											outline: "none",

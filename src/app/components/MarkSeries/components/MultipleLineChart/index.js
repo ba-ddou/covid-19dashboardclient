@@ -1,15 +1,14 @@
 import React, { useEffect, memo } from "react";
 import { Line } from "@antv/g2plot";
 
-let getLine = (data, color) => {
+let getLine = (data, parameter) => {
 	return new Line(document.getElementById("multipleLineChart"), {
 		padding: [0, 20, 30, 60],
 		forceFit: true,
 		data,
 		xField: "date",
-		yField: "confirmed",
+		yField: parameter,
 		seriesField: "territory",
-		// color: (elem) => color[elem.territory],
 		xAxis: {
 			type: "dateTime",
 			tickCount: 5,
@@ -38,21 +37,21 @@ let getLine = (data, color) => {
 	});
 };
 
-const MultipleLineChart = ({ timeSeriesData }) => {
+const MultipleLineChart = ({ timeSeriesData, parameter }) => {
 	useEffect(() => {
 		async function run() {
 			let data = timeSeriesData.reduce(
 				(accumulator, current) => [...accumulator, ...current.stats],
 				[]
 			);
-			const linePlot = getLine(data, { morocco: "#F00" });
+			const linePlot = getLine(data, parameter);
 			linePlot.render();
 		}
 		if (timeSeriesData) run();
 		return () => {
 			document.getElementById("multipleLineChart").innerHTML = "";
 		};
-	}, [timeSeriesData]);
+	}, [timeSeriesData, parameter]);
 	return <div id="multipleLineChart"></div>;
 };
 

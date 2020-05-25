@@ -19,6 +19,12 @@ let getArea = (data, parameter) => {
 		color: "#FF5533",
 		smooth: true,
 		legend: true,
+		animation: {
+			appear: {
+				animation: "clipingWithData",
+				duration: 0.4,
+			},
+		},
 	});
 };
 
@@ -45,7 +51,7 @@ const AreaSeries = ({ country }) => {
 	return (
 		<div id="areaSeries" className="mainPanel rootPanel">
 			<PanelHeader
-				title="Area Series"
+				title={`Daily Statistics changes in ${country.value}`}
 				parameter={parameter}
 				setParameter={setParameter}
 				helpText={`The progression of covid-19

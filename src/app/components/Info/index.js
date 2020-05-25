@@ -31,7 +31,7 @@ const Stat = ({ number, badge, name }) => {
 							);
 						else
 							return (
-								<span className="badge-positive">{`+${badge}`}</span>
+								<span className="badge-negative">{`+${badge}`}</span>
 							);
 					} else return <span></span>;
 				})()}
