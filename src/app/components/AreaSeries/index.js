@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Area } from "@antv/g2plot";
 import useTimeSeries from "app/hooks/useTimeSeries";
 import Loader from "app/components/Loader";
@@ -6,12 +6,12 @@ import PanelHeader from "app/components/PanelHeader";
 
 import "./styles.sass";
 
-let getArea = (data) => {
+let getArea = (data, parameter) => {
 	return new Area(document.getElementById("areaSeries-chart"), {
 		data,
 		padding: [10, 20, 30, 60],
 		xField: "date",
-		yField: "active",
+		yField: parameter,
 		xAxis: {
 			type: "dateTime",
 			tickCount: 5,
@@ -24,13 +24,14 @@ let getArea = (data) => {
 
 const AreaSeries = ({ country }) => {
 	let { loading, error, data } = useTimeSeries([country.value.toLowerCase()]);
+	let [parameter, setParameter] = useState("active");
 	useEffect(
 		(_) => {
 			async function run() {
 				// let data = await fetch(
 				// 	"https:/g2plot.antv.vision/en/examples/data/fireworks-sales.json"
 				// ).then((res) => res.json());
-				let areaPlot = getArea(data.timeSeries[0].stats);
+				let areaPlot = getArea(data.timeSeries[0].stats, parameter);
 				console.log(data.timeSeries[0].stats);
 				areaPlot.render();
 			}
@@ -39,12 +40,14 @@ const AreaSeries = ({ country }) => {
 				document.getElementById("areaSeries-chart").innerHTML = "";
 			};
 		},
-		[data]
+		[data, parameter]
 	);
 	return (
 		<div id="areaSeries" className="mainPanel rootPanel">
 			<PanelHeader
 				title="Area Series"
+				parameter={parameter}
+				setParameter={setParameter}
 				helpText={`The progression of covid-19
 					statistics in the current country`}
 			/>

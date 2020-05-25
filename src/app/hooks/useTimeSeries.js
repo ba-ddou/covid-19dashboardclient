@@ -9,10 +9,14 @@ const QUERY = gql`
 			stats {
 				territory
 				date
-				confirmed
-				recovered
-				dead
 				active
+				newActive
+				confirmed
+				newConfirmed
+				recovered
+				newRecovered
+				dead
+				newDead
 			}
 		}
 	}
