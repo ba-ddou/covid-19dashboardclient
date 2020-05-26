@@ -38,7 +38,7 @@ const AreaSeries = ({ country }) => {
 				// 	"https:/g2plot.antv.vision/en/examples/data/fireworks-sales.json"
 				// ).then((res) => res.json());
 				let areaPlot = getArea(data.timeSeries[0].stats, parameter);
-				console.log(data.timeSeries[0].stats);
+				// console.log(data.timeSeries[0].stats);
 				areaPlot.render();
 			}
 			if (data) run();

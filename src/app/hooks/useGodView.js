@@ -29,7 +29,7 @@ function toPreviousDate(date) {
 // the first day of the time series is a special cases, since it has no previous day
 var fetchedDates = ["2020-01-22"];
 const useGodView = (date) => {
-	console.log(date);
+	// console.log(date);
 	const { loading, error, data, client } = useQuery(QUERY, {
 		variables: { date },
 	});
@@ -38,13 +38,13 @@ const useGodView = (date) => {
 	if (!dateIsFetched) {
 		fetchedDates.push(date);
 		let previousDate = toPreviousDate(date);
-		console.log("previousDate", previousDate);
+		// console.log("previousDate", previousDate);
 		client.query({
 			query: QUERY,
 			variables: { date: previousDate },
 		});
 	}
-	console.log(data, error);
+	// console.log(data, error);
 	return { loading, error, godViewData: data };
 };
 

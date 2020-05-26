@@ -23,7 +23,7 @@ const QUERY = gql`
 `;
 
 const useGodView = (territories) => {
-	console.log(territories);
+	// console.log(territories);
 	const { loading, error, data } = useQuery(QUERY, {
 		variables: { territories },
 	});
