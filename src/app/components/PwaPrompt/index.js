@@ -5,8 +5,7 @@ import "./styles.sass";
 
 const PwaPrompt = () => {
 	let [promptVisible, setPromptVisible] = useState(false);
-
-	let deferredPrompt = null;
+	let [deferredPrompt, setDeferredPrompt] = useState(null);
 	useEffect(() => {
 		console.log("root use Effect");
 		window.addEventListener("beforeinstallprompt", (e) => {
@@ -14,7 +13,7 @@ const PwaPrompt = () => {
 			// Prevent the mini-infobar from appearing on mobile
 			e.preventDefault();
 			// Stash the event so it can be triggered later.
-			deferredPrompt = e;
+			setDeferredPrompt(e);
 			console.log("PwaPrompt -> deferredPrompt", deferredPrompt);
 			// Update UI notify the user they can install the PWA
 			setTimeout(() => {
