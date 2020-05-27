@@ -10,7 +10,7 @@ const QUERY = gql`
 
 const useDate = () => {
 	const { loading, error, data } = useQuery(QUERY);
-    console.log("useDate -> data", data);
+    // console.log("useDate -> data", data);
     if(data) return { lastDate : data };
     else return false;
 	

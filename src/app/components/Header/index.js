@@ -10,7 +10,10 @@ const Header = () => {
 
 	return (
 		<div id="header">
-			<h1>Covid-19 Dashboard</h1>
+			<div>
+				<h1>Covid-19 Dashboard</h1><span>BETA</span>
+			</div>
+			
 			<div>
 				<span onClick={(_) => setAboutModal(true)}>About</span>
 				<span onClick={(_) => setContactModal(true)}>Contact</span>
