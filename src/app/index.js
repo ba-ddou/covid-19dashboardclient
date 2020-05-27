@@ -18,8 +18,8 @@ import useDate from "app/hooks/useDate";
 
 const App = () => {
 	let [country, setCountry] = useState({
-		value: "global",
-		ISO_A2: "undefined",
+		value: "morocco",
+		ISO_A2: "MA",
 	});
 	let lastDate = useDate();
 	let [date, setDate] = useState("2020-05-26");
