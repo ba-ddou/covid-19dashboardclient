@@ -7,24 +7,27 @@ import "./styles.sass";
 const PwaPrompt = () => {
 	let [prompt, setPrompt] = useState(false);
 	let [deferredPrompt, setDeferredPrompt] = useState(null);
+
+	let beforeinstallpromptHandler = (e) => {
+		console.log("beforeinstallprompt captured");
+		// Prevent the mini-infobar from appearing on mobile
+		e.preventDefault();
+		// Stash the event so it can be triggered later.
+		setDeferredPrompt(e);
+		// Update UI notify the user they can install the PWA
+		setTimeout(() => {
+			setPrompt(
+				<>
+					<Download size="20" />
+					Tap this message to add the app to your homescreen
+				</>
+			);
+		}, 200);
+	}
+
 	useEffect(() => {
 		console.log(navigator.platform);
-		window.addEventListener("beforeinstallprompt", (e) => {
-			console.log("beforeinstallprompt captured");
-			// Prevent the mini-infobar from appearing on mobile
-			e.preventDefault();
-			// Stash the event so it can be triggered later.
-			setDeferredPrompt(e);
-			// Update UI notify the user they can install the PWA
-			setTimeout(() => {
-				setPrompt(
-					<>
-						<Download size="20" />
-						Tap this message to add the app to your homescreen
-					</>
-				);
-			}, 200);
-		});
+		window.addEventListener("beforeinstallprompt",beforeinstallpromptHandler);
 		if (["iPhone", "iPad", "iPod"].includes(navigator.platform)) {
 			console.log("you're using an apple device");
 			setTimeout(() => {
@@ -38,15 +41,16 @@ const PwaPrompt = () => {
 		} else {
 			console.log(navigator.platform);
 		}
-		return (_) => window.removeEventListener("beforeinstallprompt");
+		return (_) => window.removeEventListener("beforeinstallprompt",beforeinstallpromptHandler,true);
 	}, []);
 
 	let install = (_) => {
-		window.removeEventListener("beforeinstallprompt");
 		if (deferredPrompt) {
 			deferredPrompt.prompt();
 			setPrompt(false);
 		} else console.log("deferredPrompt is null");
+		
+		window.removeEventListener("beforeinstallprompt",beforeinstallpromptHandler,true);
 	};
 
 	return (
