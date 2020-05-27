@@ -59,12 +59,14 @@
                 height: 28rem
                 @include for-mobile
                     flex-direction: column
-                    height: 40rem
+                    height: 50rem
                 .mainPanel
                     flex: 1
                 .mainPanel:nth-child(1)
-                    // margin-right: .5rem
+                    @include for-mobile
+                        flex: 1
                 .mainPanel:nth-child(2)
-                    // margin-left: .5rem
+                    @include for-mobile
+                        flex: 1.3
 
         
