@@ -4,7 +4,7 @@ import "./styles/antd-overrides.less";
 import "./styles/index.sass";
 
 // import config from "./config";
-
+import PwaPrompt from "./components/PwaPrompt";
 import Header from "./components/Header";
 import { SearchBar } from "./components/SearchBar";
 import Info from "./components/Info";
@@ -30,6 +30,7 @@ const App = () => {
 
 	return (
 		<>
+			<PwaPrompt />
 			<Header />
 			<div id="mainContainer">
 				<div id="mainContainer-subC1">
@@ -38,7 +39,7 @@ const App = () => {
 						<Info
 							country={country}
 							godViewData={
-								loading && !error ? false : godViewData.godView
+								loading || error ? false : godViewData.godView
 							}
 							lastDate="2020-05-23"
 							onDateChange={onDateChange}

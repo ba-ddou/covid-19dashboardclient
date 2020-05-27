@@ -1,0 +1,56 @@
+@import 'styles/index.sass'
+
+
+// #promptBanner
+//     background-color: $brandColor
+//     height: 5rem
+//     display: flex
+//     justify-content: center
+//     color: $white
+    
+
+@keyframes drop
+    0% {top: -5rem}
+    50% {top: 1rem}
+    100% {top: 1rem}
+
+
+#pwaPrompt
+    position: fixed
+    width: auto
+    height: 3.2rem
+    padding: 0 1rem 
+    left: 50%
+    top: -5rem
+    background-color: $brandColor
+    @include transform(translateX(-50%))
+    border-radius: 0.5rem
+    box-shadow: rgba(0,0,0,0.3) 0 0.4rem 1.2rem
+    animation-name: drop
+    animation-duration: 2s
+    animation-direction: alternate
+    animation-iteration-count: 1
+    animation-timing-function: ease-in-out
+    animation-fill-mode: forwards
+    display: flex
+    align-items: center
+    justify-content: space-between
+    
+
+    span
+        color: white
+        // @include font-settings (GeomanistRegular, 1.1rem)
+        white-space: nowrap
+        display: flex
+        align-items: center
+        cursor: pointer
+        @include for-mobile
+            font-size: .9rem
+        >svg
+            margin-right: .5rem
+    svg
+        stroke: $white
+        cursor: pointer
+    >svg
+        margin-left: 2rem
+
