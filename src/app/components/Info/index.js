@@ -1,7 +1,8 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
 import DateSlider from "app/components/DateSlider";
 import "./styles.sass";
 import Flag from "react-world-flags";
+import Loader from "app/components/Loader"
 
 const extractStats = (country, godViewData) => {
 	if (godViewData) {
@@ -41,7 +42,7 @@ const Stat = ({ number, badge, name }) => {
 	);
 };
 
-const Info = ({ country, godViewData, lastDate, onDateChange }) => {
+const Info = ({ country, godViewData, lastDate, onDateChange, loading }) => {
 	let {
 		active,
 		newActive,
@@ -52,6 +53,8 @@ const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 		dead,
 		newDead,
 	} = extractStats(country.value, godViewData);
+
+	
 
 	return (
 		<div id="infoPanel" className="mainPanel">
@@ -80,6 +83,7 @@ const Info = ({ country, godViewData, lastDate, onDateChange }) => {
 						name="Recoveries"
 					/>
 				</div>
+				{loading && <Loader />}
 			</div>
 		</div>
 	);

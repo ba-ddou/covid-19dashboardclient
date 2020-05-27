@@ -12,9 +12,17 @@ let getArea = (data, parameter) => {
 		padding: [10, 20, 30, 60],
 		xField: "date",
 		yField: parameter,
+		// yAxis :{
+		// 	formatter: (v) => {
+		// 		if(v>1000000) return `${parseInt(v / 1000000)} M`
+		// 		else if(v>1000) return `${parseInt(v / 1000000)} K`
+		// 		else return v
+		// 	},
+		// },
 		xAxis: {
 			type: "dateTime",
 			tickCount: 5,
+
 		},
 		color: "#FF5533",
 		smooth: true,

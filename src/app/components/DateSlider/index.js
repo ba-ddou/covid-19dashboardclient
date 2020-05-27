@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Calendar } from "react-feather";
 import { Slider } from "antd";
 import "./styles.sass";
@@ -37,6 +37,18 @@ const DateSlider = ({ lastDate, onDateChange }) => {
 		setTick(tick);
 		onDateChange(tickToDateServerFomat(tick));
 	};
+
+	let lastDateReceived = false;
+	useEffect(() => {
+		if(!lastDateReceived && lastDate){
+            console.log("Info -> lastDate", lastDate);
+			onDateChange(lastDate);
+			setTick(ticksNum);
+			lastDateReceived = true;
+
+		}
+	}, [lastDate])
+
 	return (
 		<div id="dateSlider">
 			<div id="dateSlider-cpanel">

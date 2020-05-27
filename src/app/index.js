@@ -14,13 +14,15 @@ import MarkSeries from "./components/MarkSeries";
 import Footer from "./components/Footer";
 
 import useGodView from "app/hooks/useGodView";
+import useDate from "app/hooks/useDate";
 
 const App = () => {
 	let [country, setCountry] = useState({
 		value: "global",
 		ISO_A2: "undefined",
 	});
-	let [date, setDate] = useState("2020-05-11");
+	let lastDate = useDate();
+	let [date, setDate] = useState("2020-05-26");
 
 	let { loading, error, godViewData } = useGodView(date);
 
@@ -41,8 +43,9 @@ const App = () => {
 							godViewData={
 								loading || error ? false : godViewData.godView
 							}
-							lastDate="2020-05-23"
+							lastDate={lastDate ? lastDate.lastDate.date : "2020-05-26"}
 							onDateChange={onDateChange}
+							loading={loading}
 						/>
 					</div>
 					<Map
