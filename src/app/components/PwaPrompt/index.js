@@ -13,21 +13,23 @@ const PwaPrompt = () => {
 			"beforeinstallprompt",
 			(e) => {
 				console.log("beforeinstallprompt captured");
-				setPromptVisible(true)
 				// Prevent the mini-infobar from appearing on mobile
 				e.preventDefault();
 				// Stash the event so it can be triggered later.
 				deferredPrompt = e;
 				// Update UI notify the user they can install the PWA
+				setTimeout(() => {
+				setPromptVisible(true);
+				}, 200)
 			});
-			// setTimeout(() => {
-			// 	setPromptVisible(true);
-			// }, 1000)
+			
 			
 	},[]);
 
 	let install = (_) => {
+		console.log("user wants to install the app");
 		if (deferredPrompt) deferredPrompt.prompt();
+		else console.log("deferredPrompt is null");
 	};
 
 	return (
