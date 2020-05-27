@@ -7,7 +7,7 @@ import "./styles.sass";
 const PwaPrompt = () => {
 	let [prompt, setPrompt] = useState(false);
 	let [deferredPrompt, setDeferredPrompt] = useState(null);
-
+	let eventAttached = false;
 	let beforeinstallpromptHandler = (e) => {
 		console.log("beforeinstallprompt captured");
 		// Prevent the mini-infobar from appearing on mobile
@@ -27,7 +27,10 @@ const PwaPrompt = () => {
 
 	useEffect(() => {
 		console.log(navigator.platform);
-		window.addEventListener("beforeinstallprompt",beforeinstallpromptHandler);
+		if(!eventAttached) {
+			window.addEventListener("beforeinstallprompt",beforeinstallpromptHandler);
+			eventAttached = true;
+		}
 		if (["iPhone", "iPad", "iPod"].includes(navigator.platform)) {
 			console.log("you're using an apple device");
 			setTimeout(() => {
@@ -41,7 +44,6 @@ const PwaPrompt = () => {
 		} else {
 			console.log(navigator.platform);
 		}
-		return (_) => window.removeEventListener("beforeinstallprompt",beforeinstallpromptHandler,true);
 	}, []);
 
 	let install = (_) => {
@@ -58,7 +60,10 @@ const PwaPrompt = () => {
 			{prompt && (
 				<div id="pwaPrompt">
 					<span onClick={(_) => install()}>{prompt}</span>
-					<X size="14" onClick={(_) => setPrompt(false)} />
+					<X size="14" onClick={(_) =>{
+						setPrompt(false)
+						window.removeEventListener("beforeinstallprompt",beforeinstallpromptHandler,true);
+						}} />
 				</div>
 			)}
 		</div>
