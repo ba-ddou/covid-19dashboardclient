@@ -8,38 +8,41 @@ const PwaPrompt = () => {
 	let [prompt, setPrompt] = useState(false);
 	let [deferredPrompt, setDeferredPrompt] = useState(null);
 	useEffect(() => {
-			console.log("root use Effect");
-			window.addEventListener("beforeinstallprompt", (e) => {
-				console.log("beforeinstallprompt captured");
-				// Prevent the mini-infobar from appearing on mobile
-				e.preventDefault();
-				// Stash the event so it can be triggered later.
-				setDeferredPrompt(e);
-				// Update UI notify the user they can install the PWA
-				setTimeout(() => {
-					setPrompt(
-						<>
-							<Download size="20" />
-							Tap this message to add the app to your homescreen
-						</>
-					);
-				}, 200);
-			});
-		if (['iPhone', 'iPad', 'iPod'].includes(navigator.platform)) {
-			console.log("you're using an apple device")
-		setTimeout(() => {
-			setPrompt(
-				<>
-					Tap <img src={share} /> then 'Add to Home Screen' to install
-					the app
-				</>
-			);
-		}, 200);
+		console.log(navigator.platform);
+		window.addEventListener("beforeinstallprompt", (e) => {
+			console.log("beforeinstallprompt captured");
+			// Prevent the mini-infobar from appearing on mobile
+			e.preventDefault();
+			// Stash the event so it can be triggered later.
+			setDeferredPrompt(e);
+			// Update UI notify the user they can install the PWA
+			setTimeout(() => {
+				setPrompt(
+					<>
+						<Download size="20" />
+						Tap this message to add the app to your homescreen
+					</>
+				);
+			}, 200);
+		});
+		if (["iPhone", "iPad", "iPod"].includes(navigator.platform)) {
+			console.log("you're using an apple device");
+			setTimeout(() => {
+				setPrompt(
+					<>
+						Tap <img src={share} /> then 'Add to Home Screen' to
+						install the app
+					</>
+				);
+			}, 200);
+		} else {
+			console.log(navigator.platform);
 		}
+		return (_) => window.removeEventListener("beforeinstallprompt");
 	}, []);
 
 	let install = (_) => {
-		console.log("user wants to install the app");
+		window.removeEventListener("beforeinstallprompt");
 		if (deferredPrompt) {
 			deferredPrompt.prompt();
 			setPrompt(false);

@@ -3,7 +3,7 @@ import { Line } from "@antv/g2plot";
 
 let getLine = (data, parameter) => {
 	return new Line(document.getElementById("multipleLineChart"), {
-		padding: [0, 20, 30, 60],
+		padding: [10, 60, 30, 60],
 		forceFit: true,
 		data,
 		xField: "date",
@@ -27,12 +27,12 @@ let getLine = (data, parameter) => {
 			visible: true,
 			type: "line",
 		},
-		animation: {
-			appear: {
-				animation: "clipingWithData",
-				duration: 0.4,
-			},
-		},
+		// animation: {
+		// 	appear: {
+		// 		animation: "clipingWithData",
+		// 		duration: 0.4,
+		// 	},
+		// },
 		smooth: true,
 	});
 };
