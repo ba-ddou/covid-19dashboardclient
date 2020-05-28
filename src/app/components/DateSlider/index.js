@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, Calendar } from "react-feather";
 import { Slider } from "antd";
 import "./styles.sass";
@@ -38,16 +38,15 @@ const DateSlider = ({ lastDate, onDateChange }) => {
 		onDateChange(tickToDateServerFomat(tick));
 	};
 
-	let lastDateReceived = false;
+	let lastDateReceived = useRef(false);
 	useEffect(() => {
-		if(!lastDateReceived && lastDate){
-            console.log("Info -> lastDate", lastDate);
+		if (!lastDateReceived.current && lastDate) {
+			// console.log("Info -> lastDate", lastDate);
 			onDateChange(lastDate);
 			setTick(ticksNum);
-			lastDateReceived = true;
-
+			lastDateReceived.current = true;
 		}
-	}, [lastDate])
+	}, [lastDate]);
 
 	return (
 		<div id="dateSlider">

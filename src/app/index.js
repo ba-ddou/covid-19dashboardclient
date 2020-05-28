@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "./styles/antd-overrides.less";
 import "./styles/index.sass";
@@ -43,7 +43,9 @@ const App = () => {
 							godViewData={
 								loading || error ? false : godViewData.godView
 							}
-							lastDate={lastDate ? lastDate.lastDate.date : "2020-05-26"}
+							lastDate={
+								lastDate ? lastDate.lastDate.date : "2020-05-26"
+							}
 							onDateChange={onDateChange}
 							loading={loading}
 						/>

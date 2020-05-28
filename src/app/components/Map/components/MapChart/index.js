@@ -23,7 +23,7 @@ const rounded = (num) => {
 const extractStats = (country, godViewData) => {
 	if (godViewData) {
 		let res = godViewData.find(
-			(elem) => elem.territory == country.toLowerCase()
+			(elem) => elem.territory === country.toLowerCase()
 		);
 
 		if (res) return res;
@@ -32,15 +32,15 @@ const extractStats = (country, godViewData) => {
 };
 
 const MapChart = ({ setTooltipContent, onClick, godViewData, parameter }) => {
-	if (godViewData)
-		console.log(
-			parameter,
-			Math.max(
-				...godViewData.map((elem) =>
-					elem.territory !== "global" ? elem[parameter] : 0
-				)
-			)
-		);
+	// if (godViewData)
+	// 	console.log(
+	// 		parameter,
+	// 		Math.max(
+	// 			...godViewData.map((elem) =>
+	// 				elem.territory !== "global" ? elem[parameter] : 0
+	// 			)
+	// 		)
+	// 	);
 	let colorScale = godViewData
 		? scaleLinear()
 				.domain([

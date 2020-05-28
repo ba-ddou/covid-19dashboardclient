@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { X, Download } from "react-feather";
 import share from "app/assets/images/share-outline.svg";
 
@@ -7,7 +7,7 @@ import "./styles.sass";
 const PwaPrompt = () => {
 	let [prompt, setPrompt] = useState(false);
 	let [deferredPrompt, setDeferredPrompt] = useState(null);
-	let eventAttached = false;
+	let eventAttached = useRef(false);
 	let beforeinstallpromptHandler = (e) => {
 		console.log("beforeinstallprompt captured");
 		// Prevent the mini-infobar from appearing on mobile
@@ -23,22 +23,28 @@ const PwaPrompt = () => {
 				</>
 			);
 		}, 200);
-	}
+	};
 
 	useEffect(() => {
-		console.log(navigator.platform);
-		if(!eventAttached) {
-			window.addEventListener("beforeinstallprompt",beforeinstallpromptHandler);
-			eventAttached = true;
+		// console.log(navigator.platform);
+		if (!eventAttached.current) {
+			window.addEventListener(
+				"beforeinstallprompt",
+				beforeinstallpromptHandler
+			);
+			eventAttached.current = true;
 		}
 
-		if (["iPhone", "iPad", "iPod"].includes(navigator.platform) && !navigator.standalone) {
+		if (
+			["iPhone", "iPad", "iPod"].includes(navigator.platform) &&
+			!navigator.standalone
+		) {
 			console.log("you're using an apple device");
 			setTimeout(() => {
 				setPrompt(
 					<>
-						Tap <img src={share} /> then 'Add to Home Screen' to
-						install the app
+						Tap <img alt="share" src={share} /> then 'Add to Home
+						Screen' to install the app
 					</>
 				);
 			}, 200);
@@ -52,8 +58,12 @@ const PwaPrompt = () => {
 			setPrompt(false);
 			deferredPrompt.prompt();
 		} else console.log("deferredPrompt is null");
-		
-		window.removeEventListener("beforeinstallprompt",beforeinstallpromptHandler,true);
+
+		window.removeEventListener(
+			"beforeinstallprompt",
+			beforeinstallpromptHandler,
+			true
+		);
 	};
 
 	return (
@@ -61,10 +71,17 @@ const PwaPrompt = () => {
 			{prompt && (
 				<div id="pwaPrompt">
 					<span onClick={(_) => install()}>{prompt}</span>
-					<X size="14" onClick={(_) =>{
-						setPrompt(false)
-						window.removeEventListener("beforeinstallprompt",beforeinstallpromptHandler,true);
-						}} />
+					<X
+						size="14"
+						onClick={(_) => {
+							setPrompt(false);
+							window.removeEventListener(
+								"beforeinstallprompt",
+								beforeinstallpromptHandler,
+								true
+							);
+						}}
+					/>
 				</div>
 			)}
 		</div>

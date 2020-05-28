@@ -7,7 +7,7 @@ export const SearchBar = ({ onSelect, onBlur, mainPanel }) => {
 	const [options, setOptions] = useState();
 
 	const onSelectHandler = (value) => {
-		let target = countries.find((elem) => elem.value == value);
+		let target = countries.find((elem) => elem.value === value);
 		onSelect(target);
 	};
 

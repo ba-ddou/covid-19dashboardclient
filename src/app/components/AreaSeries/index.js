@@ -36,7 +36,7 @@ let getArea = (data, parameter) => {
 };
 
 const AreaSeries = ({ country }) => {
-	let { loading, error, data } = useTimeSeries([country.value.toLowerCase()]);
+	let { loading, data } = useTimeSeries([country.value.toLowerCase()]);
 	let [parameter, setParameter] = useState("active");
 	useEffect(
 		(_) => {

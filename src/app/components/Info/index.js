@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect } from "react";
+import React from "react";
 import DateSlider from "app/components/DateSlider";
 import "./styles.sass";
 import Flag from "react-world-flags";
@@ -7,7 +7,7 @@ import Loader from "app/components/Loader";
 const extractStats = (country, godViewData) => {
 	if (godViewData) {
 		let res = godViewData.find(
-			(elem) => elem.territory == country.toLowerCase()
+			(elem) => elem.territory === country.toLowerCase()
 		);
 
 		if (res) return res;

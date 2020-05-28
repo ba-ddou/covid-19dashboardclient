@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tag, Input, Tooltip } from "antd";
+import { Tag } from "antd";
 import { Plus } from "react-feather";
 import { SearchBar } from "app/components/SearchBar";
 import "./styles.sass";

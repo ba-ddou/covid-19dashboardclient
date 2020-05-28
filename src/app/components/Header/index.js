@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Instagram, Download } from "react-feather";
+import React, { useState } from "react";
+import { Instagram } from "react-feather";
 import InfoModals from "app/components/InfoModals";
-import { Tooltip } from "antd";
 import "./styles.sass";
 
 const Header = () => {
@@ -11,13 +10,14 @@ const Header = () => {
 	return (
 		<div id="header">
 			<div>
-				<h1>Covid-19 Dashboard</h1><span>BETA</span>
+				<h1>Covid-19 Dashboard</h1>
+				<span>BETA</span>
 			</div>
-			
+
 			<div>
 				<span onClick={(_) => setAboutModal(true)}>About</span>
 				<span onClick={(_) => setContactModal(true)}>Contact</span>
-				<a href="https://www.instagram.com/ba_ddou/" target="_blank">
+				<a href="https://www.instagram.com/ba_ddou/" target="_blankIG">
 					<div className="igButton">
 						<Instagram
 							color="white"

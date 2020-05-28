@@ -9,7 +9,7 @@ import "./styles.sass";
 
 const MarkSeries = () => {
 	let [countries, setCountries] = useState(["morocco"]);
-	let { loading, error, data } = useTimeSeries(countries);
+	let { loading, data } = useTimeSeries(countries);
 	let [parameter, setParameter] = useState("active");
 	return (
 		<div id="markSeries" className="mainPanel rootPanel">
