@@ -22,7 +22,7 @@ const App = () => {
 		ISO_A2: "MA",
 	});
 	let lastDate = useDate();
-	let [date, setDate] = useState("2020-05-26");
+	let [date, setDate] = useState("2020-05-27");
 
 	let { loading, error, godViewData } = useGodView(date);
 
@@ -44,7 +44,7 @@ const App = () => {
 								loading || error ? false : godViewData.godView
 							}
 							lastDate={
-								lastDate ? lastDate.lastDate.date : "2020-05-26"
+								lastDate ? lastDate.lastDate.date : "2020-05-27"
 							}
 							onDateChange={onDateChange}
 							loading={loading}

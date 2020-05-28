@@ -38,14 +38,10 @@ const DateSlider = ({ lastDate, onDateChange }) => {
 		onDateChange(tickToDateServerFomat(tick));
 	};
 
-	let lastDateReceived = useRef(false);
 	useEffect(() => {
-		if (!lastDateReceived.current && lastDate) {
-			// console.log("Info -> lastDate", lastDate);
-			onDateChange(lastDate);
-			setTick(ticksNum);
-			lastDateReceived.current = true;
-		}
+		console.log("Info -> lastDate", lastDate);
+		onDateChange(lastDate);
+		setTick(ticksNum);
 	}, [lastDate]);
 
 	return (
