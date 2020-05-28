@@ -31,6 +31,14 @@ const extractStats = (country, godViewData) => {
 	return {};
 };
 
+const maxStat = (data, parameter) => {
+	return Math.max(
+		...data
+			.filter((elem) => elem.territory !== "global")
+			.map((elem) => elem[parameter])
+	);
+};
+
 const MapChart = ({ setTooltipContent, onClick, godViewData, parameter }) => {
 	// if (godViewData)
 	// 	console.log(
@@ -41,12 +49,10 @@ const MapChart = ({ setTooltipContent, onClick, godViewData, parameter }) => {
 	// 			)
 	// 		)
 	// 	);
+
 	let colorScale = godViewData
 		? scaleLinear()
-				.domain([
-					1,
-					Math.max(...godViewData.map((elem) => elem[parameter])),
-				])
+				.domain([100, maxStat(godViewData, parameter)])
 				.range(["#ffedea", "#ff5233"])
 		: false;
 	return (
