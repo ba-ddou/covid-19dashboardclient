@@ -31,7 +31,8 @@ const PwaPrompt = () => {
 			window.addEventListener("beforeinstallprompt",beforeinstallpromptHandler);
 			eventAttached = true;
 		}
-		if (["iPhone", "iPad", "iPod"].includes(navigator.platform)) {
+
+		if (["iPhone", "iPad", "iPod"].includes(navigator.platform) && !navigator.standalone) {
 			console.log("you're using an apple device");
 			setTimeout(() => {
 				setPrompt(
@@ -48,8 +49,8 @@ const PwaPrompt = () => {
 
 	let install = (_) => {
 		if (deferredPrompt) {
-			deferredPrompt.prompt();
 			setPrompt(false);
+			deferredPrompt.prompt();
 		} else console.log("deferredPrompt is null");
 		
 		window.removeEventListener("beforeinstallprompt",beforeinstallpromptHandler,true);
