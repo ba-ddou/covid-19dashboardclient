@@ -2,7 +2,7 @@ import React, { useState, memo, useEffect } from "react";
 import DateSlider from "app/components/DateSlider";
 import "./styles.sass";
 import Flag from "react-world-flags";
-import Loader from "app/components/Loader"
+import Loader from "app/components/Loader";
 
 const extractStats = (country, godViewData) => {
 	if (godViewData) {
@@ -22,18 +22,29 @@ const Stat = ({ number, badge, name }) => {
 				<span>{number}</span>
 				{(() => {
 					if (typeof badge === "number") {
-						if (badge > 0)
-							return (
-								<span className="badge-positive">{`+${badge}`}</span>
-							);
-						else if (badge < 0)
+						if (badge > 0) {
+							if (name !== "Recoveries")
+								return (
+									<span className="badge-positive">{`+${badge}`}</span>
+								);
+							else
+								return (
+									<span className="badge-negative">{`+${badge}`}</span>
+								);
+						} else if (badge < 0) {
 							return (
 								<span className="badge-negative">{badge}</span>
 							);
-						else
-							return (
-								<span className="badge-negative">{`+${badge}`}</span>
-							);
+						} else {
+							if (name !== "Recoveries")
+								return (
+									<span className="badge-negative">{`+${badge}`}</span>
+								);
+							else
+								return (
+									<span className="badge-positive">{`+${badge}`}</span>
+								);
+						}
 					} else return <span></span>;
 				})()}
 			</div>
@@ -53,8 +64,6 @@ const Info = ({ country, godViewData, lastDate, onDateChange, loading }) => {
 		dead,
 		newDead,
 	} = extractStats(country.value, godViewData);
-
-	
 
 	return (
 		<div id="infoPanel" className="mainPanel">

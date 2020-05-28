@@ -15,7 +15,8 @@ const Map = ({ onClick, godViewData }) => {
 				title="Map view"
 				parameter={parameter}
 				setParameter={setParameter}
-				helpText={`a chrophlete map showing covid-19 spread around the world`}
+				helpText={`A Darker color corresponds to a higher value.
+							Click the settings icon to change the parameter.`}
 			/>
 			<MapChart
 				onClick={onClick}

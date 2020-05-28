@@ -49,6 +49,28 @@ const InfoModals = ({
 							data repository link
 						</a>
 					</span>
+					<br />
+					<br />
+					<span>
+						The Center for Systems Science and Engineering (CSSE) at
+						Johns Hopkins University aggregates the data from many
+						different Sources that do not always agree. Data
+						corrections are ongoing to make the data as clean and as
+						accurate as possible.
+					</span>
+					<br />
+					<br />
+					<h3>Update frequency</h3>
+					<span>Once a day around 03:30 (GMT)</span>
+					<br />
+					<br />
+
+					<h3>Disclaimer</h3>
+					<span>
+						This dashboard is not maintained or supervised by any
+						governement agency, and therefore should not be
+						regareded as an official source of covid-19 statistics.
+					</span>
 				</div>
 			</Modal>
 			<Modal

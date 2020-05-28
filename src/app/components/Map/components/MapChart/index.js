@@ -10,9 +10,6 @@ import { scaleLinear } from "d3-scale";
 const geoUrl =
 	"https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const colorScale = scaleLinear()
-	.domain([100, 200000])
-	.range(["#ffedea", "#ff5233"]);
 const rounded = (num) => {
 	if (num > 1000000000) {
 		return Math.round(num / 100000000) / 10 + "Bn";
@@ -35,6 +32,23 @@ const extractStats = (country, godViewData) => {
 };
 
 const MapChart = ({ setTooltipContent, onClick, godViewData, parameter }) => {
+	if (godViewData)
+		console.log(
+			parameter,
+			Math.max(
+				...godViewData.map((elem) =>
+					elem.territory !== "global" ? elem[parameter] : 0
+				)
+			)
+		);
+	let colorScale = godViewData
+		? scaleLinear()
+				.domain([
+					1,
+					Math.max(...godViewData.map((elem) => elem[parameter])),
+				])
+				.range(["#ffedea", "#ff5233"])
+		: false;
 	return (
 		<>
 			<ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -53,6 +67,7 @@ const MapChart = ({ setTooltipContent, onClick, godViewData, parameter }) => {
 												POP_EST,
 											} = geo.properties;
 											let {
+												active,
 												confirmed,
 												recovered,
 												dead,
@@ -61,9 +76,10 @@ const MapChart = ({ setTooltipContent, onClick, godViewData, parameter }) => {
 												`${NAME} — ${rounded(
 													POP_EST
 												)} <br /> 
-                                                infections : ${confirmed} <br />
+												Active cases : ${active} <br />
+                                                Confirmed cases : ${confirmed} <br />
                                                 Deaths : ${dead} <br />
-                                                recoveries : ${recovered}`
+                                                Recoveries : ${recovered}`
 											);
 										}
 									}}

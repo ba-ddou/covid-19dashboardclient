@@ -4,7 +4,7 @@ import { Menu, Dropdown, Radio } from "antd";
 
 import "./styles.sass";
 
-const SettingsMenu = ({ parameter, setParameter }) => {
+const SettingsMenu = ({ parameter, setParameter, multi }) => {
 	const radioStyle = {
 		display: "block",
 		height: "30px",
@@ -23,32 +23,32 @@ const SettingsMenu = ({ parameter, setParameter }) => {
 							}
 							value={parameter}>
 							{[
-								{ value: "active", text: "active cases" },
+								{ value: "active", label: "active cases" },
 								{
 									value: "newActive",
-									text: "daily active cases",
+									label: "daily active cases",
 								},
 								{
 									value: "confirmed",
-									text: "confirmed cases",
+									label: "confirmed cases",
 								},
 								{
 									value: "newConfirmed",
-									text: "daily confirmed cases",
+									label: "daily confirmed cases",
 								},
-								{ value: "dead", text: "deaths" },
-								{ value: "newDead", text: "daily deaths" },
-								{ value: "recovered", text: "recoveries" },
+								{ value: "dead", label: "deaths" },
+								{ value: "newDead", label: "daily deaths" },
+								{ value: "recovered", label: "recoveries" },
 								{
 									value: "newRecovered",
-									text: "daily recoveries",
+									label: "daily recoveries",
 								},
 							].map((elem) => (
 								<Radio
 									key={elem.value}
 									style={radioStyle}
 									value={elem.value}>
-									{elem.text}
+									{elem.label}
 								</Radio>
 							))}
 						</Radio.Group>

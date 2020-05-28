@@ -22,7 +22,6 @@ let getArea = (data, parameter) => {
 		xAxis: {
 			type: "dateTime",
 			tickCount: 5,
-
 		},
 		color: "#FF5533",
 		smooth: true,
@@ -63,7 +62,7 @@ const AreaSeries = ({ country }) => {
 				parameter={parameter}
 				setParameter={setParameter}
 				helpText={`The progression of covid-19
-					statistics in the current country`}
+					statistics in the selected country`}
 			/>
 			<div id="areaSeries-chart"></div>
 			{loading && <Loader />}
