@@ -18,20 +18,9 @@ const InfoModals = ({
 				visible={aboutModal}
 				onCancel={(_) => setAboutModal(false)}>
 				<div className="infoModal">
+					<h3>This dashboard was built by :</h3>
 					<span>
-						This dashboard was built by{" "}
-						<a
-							target="#_ig"
-							href="https://www.instagram.com/ba_ddou/">
-							Abdelbassite Badou
-						</a>
-					</span>
-					<br />
-					<br />
-
-					<h3>Other Collaborators</h3>
-					<span>
-						Imane Ech-chahbi - Lamyaa Jouichat - Chaimae Bouslikhane
+						Abdelbassite Badou - Imane Ech-chahbi - Lamyaa Jouichat - Chaimae Bouslikhane
 						- Adil Oubella - Abla Amharref
 					</span>
 					<br />

@@ -16,17 +16,7 @@ const Header = () => {
 
 			<div>
 				<span onClick={(_) => setAboutModal(true)}>About</span>
-				<span onClick={(_) => setContactModal(true)}>Contact</span>
-				<a href="https://www.instagram.com/ba_ddou/" target="_blankIG">
-					<div className="igButton">
-						<Instagram
-							color="white"
-							size={18}
-							style={{ marginRight: ".5rem" }}
-						/>
-						<span>Follow @ba_ddou</span>
-					</div>
-				</a>
+				{/* <span onClick={(_) => setContactModal(true)}>Contact</span> */}
 			</div>
 			<InfoModals
 				aboutModal={aboutModal}
